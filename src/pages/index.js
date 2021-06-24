@@ -29,7 +29,6 @@ let Home = () => {
             textColor="gray.900"
             letterSpacing="tight"
           >
-            {/* Sign in to your account */}
             Helper for your{" "}
             <Text as="span" textColor="purple.500">
               presentations
