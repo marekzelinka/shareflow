@@ -1,5 +1,5 @@
 import { Flex, Box, Heading, Text, Stack, Image } from "@chakra-ui/react";
-import { Layout, CreateRoom, Divider, JoinRoom } from "../client/components";
+import { Layout, CreateRoom, Divider, JoinRoom } from "client/components";
 
 let Home = () => {
   return (
