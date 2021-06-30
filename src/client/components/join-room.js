@@ -15,6 +15,7 @@ export const JoinRoom = () => {
   return (
     <Formik
       initialValues={{ id: "" }}
+      validateOnBlur={false}
       validate={(values) => {
         const errors = {};
         if (values.id.trim().length === 0) {

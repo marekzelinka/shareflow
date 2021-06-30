@@ -15,6 +15,7 @@ export const CreateRoom = () => {
   return (
     <Formik
       initialValues={{ host: "", title: "" }}
+      validateOnBlur={false}
       validate={(values) => {
         const errors = {};
         if (values.host.trim().length === 0) {
