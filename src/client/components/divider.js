@@ -1,6 +1,6 @@
 import { Flex, Box, Text, Divider as ChakraDivider } from "@chakra-ui/react";
 
-export let Divider = ({ children }) => {
+export const Divider = ({ children }) => {
   return (
     <Box position="relative">
       <Flex position="absolute" inset="0" alignItems="center">

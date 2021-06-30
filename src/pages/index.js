@@ -1,7 +1,7 @@
 import { Flex, Box, Heading, Text, Stack, Image } from "@chakra-ui/react";
 import { Layout, CreateRoom, Divider, JoinRoom } from "client/components";
 
-let Home = () => {
+const Home = () => {
   return (
     <Layout title="Home">
       <Flex
