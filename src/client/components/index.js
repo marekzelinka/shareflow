@@ -8,3 +8,4 @@ export * from "./message-list";
 export * from "./room-header";
 export * from "./room-messages";
 export * from "./add-message";
+export * from "./empty";

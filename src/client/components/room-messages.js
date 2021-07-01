@@ -9,10 +9,11 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import { AddMessage } from "./add-message";
+import { Empty } from "./empty";
 import { MessageList } from "./message-list";
 
 export const RoomMessages = (props) => {
-  const { messages } = props;
+  const { roomId, messages } = props;
 
   const links = messages.filter((message) => message.type === "link");
   const snippets = messages.filter((message) => message.type === "snippet");
@@ -42,7 +43,7 @@ export const RoomMessages = (props) => {
             right={{ md: 0 }}
           >
             <Box>
-              <AddMessage />
+              <AddMessage roomId={roomId} />
             </Box>
           </Stack>
         </Box>
@@ -98,6 +99,9 @@ export const RoomMessages = (props) => {
                   textColor: "purple.500",
                   borderBottomColor: "purple.400",
                 },
+                _disabled: {
+                  textColor: "gray.500",
+                },
               }}
               _selected={{
                 textColor: "purple.500",
@@ -108,6 +112,7 @@ export const RoomMessages = (props) => {
                 },
               }}
               _active={{ backgroundColor: "transparent" }}
+              isDisabled={links.length === 0}
             >
               Links
             </Tab>
@@ -130,6 +135,9 @@ export const RoomMessages = (props) => {
                   textColor: "purple.500",
                   borderBottomColor: "purple.400",
                 },
+                _disabled: {
+                  textColor: "gray.500",
+                },
               }}
               _selected={{
                 textColor: "purple.500",
@@ -140,6 +148,7 @@ export const RoomMessages = (props) => {
                 },
               }}
               _active={{ backgroundColor: "transparent" }}
+              isDisabled={snippets.length === 0}
             >
               Snippets
             </Tab>
@@ -148,7 +157,16 @@ export const RoomMessages = (props) => {
       </Box>
       <TabPanels>
         <TabPanel p={0}>
-          <MessageList messages={messages} />
+          {messages.length > 0 ? (
+            <MessageList messages={messages} />
+          ) : (
+            <Empty
+              title="No messages found"
+              description="Get started by adding a new message."
+            >
+              <AddMessage roomId={roomId} />
+            </Empty>
+          )}
         </TabPanel>
         <TabPanel p={0}>
           <MessageList messages={links} />

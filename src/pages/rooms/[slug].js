@@ -21,7 +21,7 @@ const Room = () => {
         <RoomHeader room={room} />
         <Box as="main" pt={8} pb={16}>
           <Container mx="auto" px={{ base: 0, sm: 6, lg: 8 }} maxWidth="2xl">
-            <RoomMessages messages={room.messages} />
+            <RoomMessages roomId={room.id} messages={room.messages} />
           </Container>
         </Box>
       </Box>

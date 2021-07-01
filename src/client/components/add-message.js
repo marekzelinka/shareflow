@@ -67,6 +67,7 @@ export const AddMessage = (props) => {
             duration: 3000,
             isClosable: true,
           });
+          onClose();
         },
         onError: () => {
           toast({
@@ -140,7 +141,12 @@ export const AddMessage = (props) => {
             }) => (
               <>
                 <ModalBody minHeight="311px" pb={6}>
-                  <Stack as="form" spacing={6} onSubmit={handleSubmit}>
+                  <Stack
+                    as="form"
+                    id="new-message-form"
+                    spacing={6}
+                    onSubmit={handleSubmit}
+                  >
                     <FormControl>
                       <FormLabel
                         fontSize="sm"
@@ -320,6 +326,7 @@ export const AddMessage = (props) => {
                     </Button>
                     <Button
                       type="submit"
+                      form="new-message-form"
                       colorScheme="purple"
                       fontWeight="medium"
                       fontSize="sm"
