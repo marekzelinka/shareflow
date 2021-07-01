@@ -7,28 +7,63 @@ import {
   Button,
   FormErrorMessage,
   Icon,
+  useToast,
 } from "@chakra-ui/react";
 import { Formik } from "formik";
 import { ExclamationCircleIcon, PlusCircleIcon } from "@heroicons/react/solid";
+import { useRouter } from "next/router";
+import { useJoinRoomMutation } from "client/hooks";
+
+const initialValues = { slug: "" };
+
+const validate = (values) => {
+  const errors = {};
+  if (values.slug.trim().length === 0) {
+    errors.slug = "Required";
+  }
+  return errors;
+};
 
 export const JoinRoom = () => {
+  const toast = useToast();
+  const router = useRouter();
+  const joinRoomResult = useJoinRoomMutation();
+
+  const handleSubmit = async (values, { setSubmitting, resetForm }) => {
+    joinRoomResult.mutate(values, {
+      onSuccess: (slug) => {
+        resetForm();
+        toast({
+          title: "Room available. Redirecting...",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+        });
+        router.push(`/rooms/${slug}`);
+      },
+      onError: () => {
+        toast({
+          title: "Uh oh! Something went wrong :(",
+          description:
+            "A room with this ID doesn't exist, or an error occurred. Please try again.",
+          status: "error",
+          duration: 3000,
+          isClosable: true,
+        });
+      },
+      onSettled: () => {
+        setSubmitting(false);
+      },
+    });
+  };
+
   return (
     <Formik
-      initialValues={{ id: "" }}
+      initialValues={initialValues}
       validateOnBlur={false}
-      validate={(values) => {
-        const errors = {};
-        if (values.id.trim().length === 0) {
-          errors.id = "Required";
-        }
-        return errors;
-      }}
-      onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-        }, 400);
-      }}
+      validateOnChange={false}
+      validate={validate}
+      onSubmit={handleSubmit}
     >
       {({
         values,
@@ -40,7 +75,7 @@ export const JoinRoom = () => {
         isSubmitting,
       }) => (
         <Stack as="form" spacing={6} onSubmit={handleSubmit}>
-          <FormControl isInvalid={errors.id !== undefined && touched.id}>
+          <FormControl isInvalid={errors.slug !== undefined && touched.slug}>
             <FormLabel fontSize="sm" fontWeight="medium" textColor="gray.700">
               Room ID
             </FormLabel>
@@ -51,10 +86,10 @@ export const JoinRoom = () => {
                 ring: "1px",
                 ringColor: "purple.400",
               }}
-              name="id"
+              name="slug"
               onChange={handleChange}
               onBlur={handleBlur}
-              value={values.id}
+              value={values.slug}
             />
             <FormErrorMessage>
               <Icon
@@ -66,7 +101,7 @@ export const JoinRoom = () => {
                 textColor="red.400"
                 aria-hidden="true"
               />
-              {errors.id}
+              {errors.slug}
             </FormErrorMessage>
           </FormControl>
           <Box>

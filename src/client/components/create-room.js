@@ -7,31 +7,70 @@ import {
   Button,
   FormErrorMessage,
   Icon,
+  useToast,
 } from "@chakra-ui/react";
 import { Formik } from "formik";
 import { ExclamationCircleIcon, PlusCircleIcon } from "@heroicons/react/solid";
+import { useRouter } from "next/router";
+import { generateSlug } from "client/utils";
+import { useCreateRoomMutation } from "client/hooks";
+
+const initialValues = { slug: generateSlug(), title: "", host: "" };
+
+const validate = (values) => {
+  const errors = {};
+  if (values.slug.trim().length === 0) {
+    errors.slug = "Required";
+  }
+  if (values.title.trim().length < 3) {
+    errors.title = "Too short!";
+  }
+  if (values.host.trim().length === 0) {
+    errors.host = "Required";
+  }
+  return errors;
+};
 
 export const CreateRoom = () => {
+  const toast = useToast();
+  const router = useRouter();
+  const createRoomResult = useCreateRoomMutation();
+
+  const handleSubmit = (values, { setSubmitting, resetForm }) => {
+    createRoomResult.mutate(values, {
+      onSuccess: (slug) => {
+        resetForm();
+        toast({
+          title: "Room available. Redirecting...",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+        });
+        router.push(`/rooms/${slug}`);
+      },
+      onError: () => {
+        toast({
+          title: "Uh oh! Something went wrong :(",
+          description:
+            "Room unavailable or an error occurred. Please try again.",
+          status: "error",
+          duration: 3000,
+          isClosable: true,
+        });
+      },
+      onSettled: () => {
+        setSubmitting(false);
+      },
+    });
+  };
+
   return (
     <Formik
-      initialValues={{ host: "", title: "" }}
+      initialValues={initialValues}
       validateOnBlur={false}
-      validate={(values) => {
-        const errors = {};
-        if (values.host.trim().length === 0) {
-          errors.host = "Required";
-        }
-        if (values.title.trim().length < 3) {
-          errors.title = "Too short!";
-        }
-        return errors;
-      }}
-      onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-        }, 400);
-      }}
+      validateOnChange={false}
+      validate={validate}
+      onSubmit={handleSubmit}
     >
       {({
         values,
@@ -43,9 +82,9 @@ export const CreateRoom = () => {
         isSubmitting,
       }) => (
         <Stack as="form" spacing={6} onSubmit={handleSubmit}>
-          <FormControl isInvalid={errors.host !== undefined && touched.host}>
+          <FormControl isInvalid={errors.slug !== undefined && touched.slug}>
             <FormLabel fontSize="sm" fontWeight="medium" textColor="gray.700">
-              Your name
+              Room ID
             </FormLabel>
             <Input
               _focus={{
@@ -54,10 +93,10 @@ export const CreateRoom = () => {
                 ring: "1px",
                 ringColor: "purple.400",
               }}
-              name="host"
+              name="slug"
               onChange={handleChange}
               onBlur={handleBlur}
-              value={values.host}
+              value={values.slug}
             />
             <FormErrorMessage>
               <Icon
@@ -69,12 +108,12 @@ export const CreateRoom = () => {
                 textColor="red.400"
                 aria-hidden="true"
               />
-              {errors.host}
+              {errors.slug}
             </FormErrorMessage>
           </FormControl>
           <FormControl isInvalid={errors.title !== undefined && touched.title}>
             <FormLabel fontSize="sm" fontWeight="medium" textColor="gray.700">
-              Room title
+              Title
             </FormLabel>
             <Input
               _focus={{
@@ -99,6 +138,35 @@ export const CreateRoom = () => {
                 aria-hidden="true"
               />
               {errors.title}
+            </FormErrorMessage>
+          </FormControl>
+          <FormControl isInvalid={errors.host !== undefined && touched.host}>
+            <FormLabel fontSize="sm" fontWeight="medium" textColor="gray.700">
+              Host
+            </FormLabel>
+            <Input
+              _focus={{
+                outline: "none",
+                borderColor: "purple.400",
+                ring: "1px",
+                ringColor: "purple.400",
+              }}
+              name="host"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.host}
+            />
+            <FormErrorMessage>
+              <Icon
+                as={ExclamationCircleIcon}
+                mr={1.5}
+                width={5}
+                height={5}
+                flexShrink={0}
+                textColor="red.400"
+                aria-hidden="true"
+              />
+              {errors.host}
             </FormErrorMessage>
           </FormControl>
           <Box>
