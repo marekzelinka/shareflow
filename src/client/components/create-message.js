@@ -18,7 +18,12 @@ import { Formik } from "formik";
 import { isValidUrl } from "client/utils";
 import { useCreateMessageMutation } from "client/hooks";
 
-const initialValues = { type: "link", url: "", lanuage: "", codeString: "" };
+const initialValues = {
+  type: "link",
+  url: "",
+  lanuage: "javascript",
+  codeString: "",
+};
 
 const validate = (values) => {
   const errors = {};

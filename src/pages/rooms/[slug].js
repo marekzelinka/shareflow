@@ -1,4 +1,5 @@
 import { Box, Container, Stack } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 import {
   Nav,
   RoomHeader,
@@ -6,6 +7,7 @@ import {
   Layout,
   RoomAddMessage,
 } from "client/components";
+import { useRoomQuery } from "client/hooks/useRoomQuery";
 
 const roomData = {
   id: "16",
@@ -54,6 +56,10 @@ const roomData = {
 };
 
 const Room = () => {
+  const router = useRouter();
+  const { slug } = router.query;
+  const roomResult = useRoomQuery(slug);
+
   return (
     <Layout title={`${roomData.title}, hosted by ${roomData.host}`}>
       <Box position="relative" minHeight="100vh" backgroundColor="white">
