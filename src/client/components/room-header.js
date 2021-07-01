@@ -107,7 +107,7 @@ export const RoomHeader = (props) => {
                 textColor="gray.400"
                 aria-hidden="true"
               />
-              {formatDate(room.createdAt)}
+              {formatDate(room.inserted_at)}
             </Flex>
             <Flex
               mt={2}

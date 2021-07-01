@@ -6,10 +6,12 @@ const getRoomById = async (slug) => {
     .from("rooms")
     .select(
       `
+      id,
       title, 
       host, 
       inserted_at,
       messages (
+        id,
         type, 
         url, 
         language,
@@ -19,6 +21,7 @@ const getRoomById = async (slug) => {
       `
     )
     .eq("slug", slug)
+    .order("inserted_at", { ascending: false, foreignTable: "messages" })
     .single();
   if (selectResult.error !== null) {
     throw selectResult.error;

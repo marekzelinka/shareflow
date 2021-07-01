@@ -22,7 +22,7 @@ const MessageItem = (props) => {
       ) : (
         <CodeBlock
           language={message.language}
-          codeString={message.codeString}
+          codeString={message.code_string}
         />
       )}
       <Flex mt={2} alignItems="center" fontSize="sm" textColor="gray.500">
@@ -35,7 +35,7 @@ const MessageItem = (props) => {
           textColor="gray.400"
           aria-hidden="true"
         />
-        {formatDate(message.createdAt)}
+        {formatDate(message.inserted_at)}
       </Flex>
     </Box>
   );
