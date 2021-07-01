@@ -6,7 +6,9 @@ import {
   TabPanels,
   Tab,
   TabPanel,
+  Stack,
 } from "@chakra-ui/react";
+import { AddMessage } from "./add-message";
 import { MessageList } from "./message-list";
 
 export const RoomMessages = (props) => {
@@ -17,21 +19,35 @@ export const RoomMessages = (props) => {
 
   return (
     <Tabs as="section">
-      <Box as="header" borderBottomWidth={1} borderTopColor="gray.200">
+      <Box
+        as="header"
+        position="relative"
+        borderBottomWidth={1}
+        borderBottomColor="gray.200"
+        px={{ base: 4, sm: 0 }}
+      >
         <Box
-          px={{ base: 4, sm: 0 }}
-          display={{ sm: "flex" }}
-          alignItems={{ sm: "baseline" }}
+          display={{ md: "flex" }}
+          alignItems={{ md: "center" }}
+          justifyContent={{ md: "space-between" }}
         >
           <Heading as="h2" size="md" fontWeight="medium" textColor="gray.900">
             Previous messages
           </Heading>
-          <TabList
-            mt={{ base: 4, sm: 0 }}
-            mb="-1px"
-            ml={{ sm: 10 }}
-            borderBottomWidth={0}
+          <Stack
+            mt={{ base: 3, md: 0 }}
+            spacing={3}
+            position={{ md: "absolute" }}
+            top={{ md: 3 }}
+            right={{ md: 0 }}
           >
+            <Box>
+              <AddMessage />
+            </Box>
+          </Stack>
+        </Box>
+        <Box mt={4}>
+          <TabList mb="-1px" borderBottomWidth={0}>
             <Tab
               mb={0}
               pt={0}

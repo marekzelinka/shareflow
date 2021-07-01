@@ -1,12 +1,6 @@
 import { Box, Container, Stack } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import {
-  Nav,
-  RoomHeader,
-  RoomMessages,
-  Layout,
-  RoomAddMessage,
-} from "client/components";
+import { Nav, RoomHeader, RoomMessages, Layout } from "client/components";
 import { useRoomQuery } from "client/hooks/useRoomQuery";
 
 const Room = () => {
@@ -27,10 +21,7 @@ const Room = () => {
         <RoomHeader room={room} />
         <Box as="main" pt={8} pb={16}>
           <Container mx="auto" px={{ base: 0, sm: 6, lg: 8 }} maxWidth="2xl">
-            <Stack spacing={6}>
-              <RoomAddMessage roomId={room.id} />
-              <RoomMessages messages={room.messages} />
-            </Stack>
+            <RoomMessages messages={room.messages} />
           </Container>
         </Box>
       </Box>
