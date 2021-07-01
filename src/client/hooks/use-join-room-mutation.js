@@ -1,7 +1,7 @@
 import { useMutation } from "react-query";
 import { supabase } from "client/lib/supabase";
 
-const joinRoom = async (values) => {
+const joinRoom = async ({ values }) => {
   const selectResult = await supabase
     .from("rooms")
     .select("slug")
@@ -11,8 +11,7 @@ const joinRoom = async (values) => {
     throw selectResult.error;
   }
 
-  const slug = selectResult.data.slug;
-  return slug;
+  return selectResult.data;
 };
 
 export const useJoinRoomMutation = () => {

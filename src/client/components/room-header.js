@@ -15,6 +15,7 @@ import { formatDate } from "client/utils";
 
 const ShareButton = (props) => {
   const { shareData, children, ...restProps } = props;
+
   const toast = useToast();
   const [isSharingUrl, setIsSharingUrl] = useState(false);
 
@@ -68,6 +69,7 @@ const ShareButton = (props) => {
 
 export const RoomHeader = (props) => {
   const { room } = props;
+
   const router = useRouter();
 
   return (

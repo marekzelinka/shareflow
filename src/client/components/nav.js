@@ -45,7 +45,7 @@ const NavLink = (props) => {
   );
 };
 
-export let Nav = () => {
+export const Nav = () => {
   return (
     <Box as="nav" backgroundColor="gray.50">
       <Container mx="auto" px={{ base: 4, sm: 6, lg: 8 }} maxWidth="2xl">

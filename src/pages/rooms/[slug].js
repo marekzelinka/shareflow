@@ -2,12 +2,13 @@ import { Box, Container, Stack } from "@chakra-ui/react";
 import {
   Nav,
   RoomHeader,
-  AddMessage,
   RoomMessages,
   Layout,
+  RoomAddMessage,
 } from "client/components";
 
 const roomData = {
+  id: "16",
   title: "Web Development From Scratch",
   host: "Marek Zelinka",
   createdAt: new Date("January 9, 2020, 2:49 PM").toISOString(),
@@ -61,7 +62,7 @@ const Room = () => {
         <Box as="main" pt={8} pb={16}>
           <Container mx="auto" px={{ base: 0, sm: 6, lg: 8 }} maxWidth="2xl">
             <Stack spacing={6}>
-              <AddMessage />
+              <RoomAddMessage roomId={roomData.id} />
               <RoomMessages messages={roomData.messages} />
             </Stack>
           </Container>

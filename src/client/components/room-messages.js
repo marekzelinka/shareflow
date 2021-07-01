@@ -9,7 +9,9 @@ import {
 } from "@chakra-ui/react";
 import { MessageList } from "./message-list";
 
-export const RoomMessages = ({ messages }) => {
+export const RoomMessages = (props) => {
+  const { messages } = props;
+
   const links = messages.filter((message) => message.type === "link");
   const snippets = messages.filter((message) => message.type === "snippet");
 

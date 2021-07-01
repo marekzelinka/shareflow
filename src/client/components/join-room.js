@@ -30,31 +30,34 @@ export const JoinRoom = () => {
   const joinRoomResult = useJoinRoomMutation();
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
-    joinRoomResult.mutate(values, {
-      onSuccess: (slug) => {
-        resetForm();
-        toast({
-          title: "Room available. Redirecting...",
-          status: "success",
-          duration: 3000,
-          isClosable: true,
-        });
-        router.push(`/rooms/${slug}`);
-      },
-      onError: () => {
-        toast({
-          title: "Uh oh! Something went wrong :(",
-          description:
-            "A room with this ID doesn't exist, or an error occurred. Please try again.",
-          status: "error",
-          duration: 3000,
-          isClosable: true,
-        });
-      },
-      onSettled: () => {
-        setSubmitting(false);
-      },
-    });
+    joinRoomResult.mutate(
+      { values },
+      {
+        onSuccess: ({ slug }) => {
+          resetForm();
+          toast({
+            title: "Room available. Redirecting...",
+            status: "success",
+            duration: 3000,
+            isClosable: true,
+          });
+          router.push(`/rooms/${slug}`);
+        },
+        onError: () => {
+          toast({
+            title: "Uh oh! Something went wrong :(",
+            description:
+              "A room with this ID doesn't exist, or an error occurred. Please try again.",
+            status: "error",
+            duration: 3000,
+            isClosable: true,
+          });
+        },
+        onSettled: () => {
+          setSubmitting(false);
+        },
+      }
+    );
   };
 
   return (

@@ -28,6 +28,7 @@ SyntaxHighlighter.registerLanguage("css", css);
 
 export const CodeBlock = (props) => {
   const { language, codeString } = props;
+
   const theme = useTheme();
   const { hasCopied, onCopy } = useClipboard(codeString);
 

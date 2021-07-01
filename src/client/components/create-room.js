@@ -37,31 +37,34 @@ export const CreateRoom = () => {
   const createRoomResult = useCreateRoomMutation();
 
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
-    createRoomResult.mutate(values, {
-      onSuccess: (slug) => {
-        resetForm();
-        toast({
-          title: "Room available. Redirecting...",
-          status: "success",
-          duration: 3000,
-          isClosable: true,
-        });
-        router.push(`/rooms/${slug}`);
-      },
-      onError: () => {
-        toast({
-          title: "Uh oh! Something went wrong :(",
-          description:
-            "Room unavailable or an error occurred. Please try again.",
-          status: "error",
-          duration: 3000,
-          isClosable: true,
-        });
-      },
-      onSettled: () => {
-        setSubmitting(false);
-      },
-    });
+    createRoomResult.mutate(
+      { values },
+      {
+        onSuccess: ({ slug }) => {
+          resetForm();
+          toast({
+            title: "Room available. Redirecting...",
+            status: "success",
+            duration: 3000,
+            isClosable: true,
+          });
+          router.push(`/rooms/${slug}`);
+        },
+        onError: () => {
+          toast({
+            title: "Uh oh! Something went wrong :(",
+            description:
+              "Room unavailable or an error occurred. Please try again.",
+            status: "error",
+            duration: 3000,
+            isClosable: true,
+          });
+        },
+        onSettled: () => {
+          setSubmitting(false);
+        },
+      }
+    );
   };
 
   return (
