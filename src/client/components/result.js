@@ -17,16 +17,16 @@ export const Result = (props) => {
       alignItems="center"
       justifyContent="center"
       textAlign="center"
-      pt={6}
-      pb={5}
+      pt={10}
+      pb={8}
       rounded="lg"
     >
       <AlertIcon boxSize={10} mr={0} />
-      <AlertTitle mt={4} mb={1} fontSize="lg">
+      <AlertTitle mt={6} mb={1} fontSize="lg">
         {title}
       </AlertTitle>
       <AlertDescription maxWidth="sm">{description}</AlertDescription>
-      <Box mt={8}>{children}</Box>
+      {children !== undefined ? <Box mt={8}>{children}</Box> : null}
     </Alert>
   );
 };

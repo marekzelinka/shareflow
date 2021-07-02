@@ -4,12 +4,12 @@ export const Empty = (props) => {
   const { title, description, children } = props;
 
   return (
-    <Box pt={6} pb={5} textAlign="center">
+    <Box pt={10} pb={8} textAlign="center">
       <Image height={20} width="auto" mx="auto" src="/empty.svg" alt="" />
       <Heading as="h3" mt={6} size="md" fontWeight="bold" textColor="gray.900">
         {title}
       </Heading>
-      <Text mt={2} fontSize="sm" textColor="gray.500">
+      <Text mt={1} fontSize="sm" textColor="gray.500">
         {description}
       </Text>
       <Box mt={8}>{children}</Box>

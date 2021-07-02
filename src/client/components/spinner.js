@@ -24,7 +24,7 @@ export const Spinner = (props) => {
   }, [tip]);
 
   return (
-    <Box pt={6} pb={5} textAlign="center">
+    <Box pt={10} pb={8} textAlign="center">
       <ChakraSpinner
         thickness="4px"
         speed="0.65s"
@@ -32,7 +32,13 @@ export const Spinner = (props) => {
         color="purple.500"
         size="xl"
       />
-      <Text as="div" mt={2} fontSize="sm" textColor="gray.500">
+      <Text
+        as="div"
+        mt={6}
+        fontSize="md"
+        fontWeight="bold"
+        textColor="gray.500"
+      >
         {content}
       </Text>
     </Box>
