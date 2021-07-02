@@ -19,8 +19,8 @@ const About = () => {
       <Layout.Content>
         <Box px={{ base: 4, sm: 0 }}>
           <Text fontSize="lg">
-            shareflow is a simple helper for your presentations, where you can
-            create a room, share the URL with the attendees, and collaborate
+            shareflow is a helper for your presentations, where you can create a
+            room, share the URL with the attendees, and collaborate!
           </Text>
           <Heading
             as="h2"
