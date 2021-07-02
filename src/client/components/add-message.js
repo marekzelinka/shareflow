@@ -33,7 +33,7 @@ import { useCreateMessageMutation } from "client/hooks";
 const initialValues = {
   type: "link",
   url: "",
-  lanuage: "javascript",
+  language: "javascript",
   codeString: "",
 };
 

@@ -9,3 +9,5 @@ export * from "./room-header";
 export * from "./room-messages";
 export * from "./add-message";
 export * from "./empty";
+export * from "./result";
+export * from "./spinner";

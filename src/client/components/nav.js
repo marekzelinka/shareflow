@@ -47,15 +47,18 @@ const NavLink = (props) => {
 
 export const Nav = () => {
   return (
-    <Box as="nav" backgroundColor="gray.50">
+    <Box
+      as="nav"
+      backgroundColor="gray.50"
+      borderBottomWidth={1}
+      borderBottomColor="gray.200"
+    >
       <Container mx="auto" px={{ base: 4, sm: 6, lg: 8 }} maxWidth="2xl">
         <Flex
           height={16}
           position="relative"
           alignItems="center"
           justifyContent="space-between"
-          borderBottomWidth={1}
-          borderBottomColor="gray.200"
         >
           <Box flexShrink={0}>
             <NavLink href="/" aria-label="Home" display="block">

@@ -6,7 +6,9 @@ export const Layout = (props) => {
   return (
     <>
       <Head>
-        <title>{title ? `shareflow | ${title}` : "shareflow"}</title>
+        <title>
+          {title !== undefined ? `shareflow | ${title}` : "shareflow"}
+        </title>
       </Head>
       {children}
     </>

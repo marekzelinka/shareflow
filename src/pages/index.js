@@ -53,7 +53,7 @@ const Home = () => {
             py={8}
             backgroundColor="white"
             shadow="base"
-            rounded={{ sm: "lg" }}
+            rounded={{ sm: "md" }}
           >
             <CreateRoom />
             <Stack mt={6} spacing={6}>

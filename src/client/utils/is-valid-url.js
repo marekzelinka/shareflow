@@ -9,5 +9,5 @@ const validUrlPattern = new RegExp(
 ); // fragment locator
 
 export const isValidUrl = (string) => {
-  return !!validUrlPattern.test(string);
+  return Boolean(validUrlPattern.test(string));
 };
