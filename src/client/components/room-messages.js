@@ -13,7 +13,7 @@ import { Empty } from "./empty";
 import { MessageList } from "./message-list";
 
 export const RoomMessages = (props) => {
-  const { roomId, messages } = props;
+  const { roomId, roomSlug, messages } = props;
 
   const links = messages.filter((message) => message.type === "link");
   const snippets = messages.filter((message) => message.type === "snippet");
@@ -43,7 +43,7 @@ export const RoomMessages = (props) => {
             right={{ md: 0 }}
           >
             <Box>
-              <AddMessage roomId={roomId} />
+              <AddMessage roomId={roomId} roomSlug={roomSlug} />
             </Box>
           </Stack>
         </Box>
@@ -164,7 +164,7 @@ export const RoomMessages = (props) => {
               title="No messages found"
               description="Get started by adding a new message."
             >
-              <AddMessage roomId={roomId} />
+              <AddMessage roomId={roomId} roomSlug={roomSlug} />
             </Empty>
           )}
         </TabPanel>

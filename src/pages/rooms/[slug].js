@@ -52,7 +52,11 @@ const Room = () => {
                 px={{ base: 0, sm: 6, lg: 8 }}
                 maxWidth="2xl"
               >
-                <RoomMessages roomId={room.id} messages={room.messages} />
+                <RoomMessages
+                  roomId={room.id}
+                  roomSlug={slug}
+                  messages={room.messages}
+                />
               </Container>
             </Box>
           </>

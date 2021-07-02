@@ -49,30 +49,21 @@ const validate = (values) => {
 };
 
 export const AddMessage = (props) => {
-  const { roomId } = props;
+  const { roomId, roomSlug } = props;
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
   const createMessageResult = useCreateMessageMutation();
 
-  const handleSubmit = (values, { setSubmitting, resetForm }) => {
+  const handleSubmit = (values, { setSubmitting }) => {
     createMessageResult.mutate(
-      { roomId, values },
+      { roomId, roomSlug, values },
       {
-        onSuccess: () => {
-          resetForm();
-          toast({
-            title: "Message added.",
-            status: "success",
-            duration: 3000,
-            isClosable: true,
-          });
-          onClose();
-        },
         onError: () => {
           toast({
             title: "Uh oh! Something went wrong :(",
-            description: "An error occurred. Please try again.",
+            description:
+              "An error occurred while adding a new message. Please try again.",
             status: "error",
             duration: 3000,
             isClosable: true,
@@ -83,6 +74,7 @@ export const AddMessage = (props) => {
         },
       }
     );
+    onClose();
   };
 
   return (
@@ -138,159 +130,90 @@ export const AddMessage = (props) => {
               handleSubmit,
               isSubmitting,
               resetForm,
-            }) => (
-              <>
-                <ModalBody minHeight="311px" pb={6}>
-                  <Stack
-                    as="form"
-                    id="new-message-form"
-                    spacing={6}
-                    onSubmit={handleSubmit}
-                  >
-                    <FormControl>
-                      <FormLabel
-                        fontSize="sm"
-                        fontWeight="medium"
-                        textColor="gray.700"
-                      >
-                        Type
-                      </FormLabel>
-                      <RadioGroup
-                        colorScheme="purple"
-                        name="type"
-                        value={values.type}
-                      >
-                        <Stack direction="row" spacing={3}>
-                          <Radio
-                            value="link"
-                            _focus={{
-                              outline: "none",
-                              ring: "2px",
-                              ringOffset: "2px",
-                              ringColor: "purple.400",
-                            }}
-                            name="type"
-                            onChange={(e) => {
-                              resetForm();
-                              handleChange(e);
-                            }}
-                            onBlur={handleBlur}
-                          >
-                            Link
-                          </Radio>
-                          <Radio
-                            value="snippet"
-                            _focus={{
-                              outline: "none",
-                              ring: "2px",
-                              ringOffset: "2px",
-                              ringColor: "purple.400",
-                            }}
-                            name="type"
-                            onChange={(e) => {
-                              resetForm();
-                              handleChange(e);
-                            }}
-                            onBlur={handleBlur}
-                          >
-                            Snippet
-                          </Radio>
-                        </Stack>
-                      </RadioGroup>
-                    </FormControl>
-                    {values.type === "link" ? (
-                      <FormControl
-                        isInvalid={errors.url !== undefined && touched.url}
-                      >
+            }) => {
+              console.log({ isSubmitting });
+              return (
+                <>
+                  <ModalBody minHeight="311px" pb={6}>
+                    <Stack
+                      as="form"
+                      id="new-message-form"
+                      spacing={6}
+                      onSubmit={handleSubmit}
+                    >
+                      <FormControl>
                         <FormLabel
                           fontSize="sm"
                           fontWeight="medium"
                           textColor="gray.700"
                         >
-                          URL
+                          Type
                         </FormLabel>
-                        <Input
-                          _focus={{
-                            outline: "none",
-                            borderColor: "purple.400",
-                            ring: "1px",
-                            ringColor: "purple.400",
-                          }}
-                          name="url"
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          value={values.url}
-                        />
-                        <FormErrorMessage>
-                          <Icon
-                            as={ExclamationCircleIcon}
-                            mr={1.5}
-                            width={5}
-                            height={5}
-                            flexShrink={0}
-                            textColor="red.400"
-                            aria-hidden="true"
-                          />
-                          {errors.url}
-                        </FormErrorMessage>
+                        <RadioGroup
+                          colorScheme="purple"
+                          name="type"
+                          value={values.type}
+                        >
+                          <Stack direction="row" spacing={3}>
+                            <Radio
+                              value="link"
+                              _focus={{
+                                outline: "none",
+                                ring: "2px",
+                                ringOffset: "2px",
+                                ringColor: "purple.400",
+                              }}
+                              name="type"
+                              onChange={(e) => {
+                                resetForm();
+                                handleChange(e);
+                              }}
+                              onBlur={handleBlur}
+                            >
+                              Link
+                            </Radio>
+                            <Radio
+                              value="snippet"
+                              _focus={{
+                                outline: "none",
+                                ring: "2px",
+                                ringOffset: "2px",
+                                ringColor: "purple.400",
+                              }}
+                              name="type"
+                              onChange={(e) => {
+                                resetForm();
+                                handleChange(e);
+                              }}
+                              onBlur={handleBlur}
+                            >
+                              Snippet
+                            </Radio>
+                          </Stack>
+                        </RadioGroup>
                       </FormControl>
-                    ) : (
-                      <>
-                        <FormControl>
-                          <FormLabel
-                            fontSize="sm"
-                            fontWeight="medium"
-                            textColor="gray.700"
-                          >
-                            Language
-                          </FormLabel>
-                          <Select
-                            _focus={{
-                              outline: "none",
-                              borderColor: "purple.400",
-                              ring: "1px",
-                              ringColor: "purple.400",
-                            }}
-                            name="language"
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            value={values.language}
-                          >
-                            <option value="javascript">JavaScript</option>
-                            <option value="jsx">JSX</option>
-                            <option value="ruby">Ruby</option>
-                            <option value="python">Python</option>
-                            <option value="typescript">TypeScript</option>
-                            <option value="tsx">TSX</option>
-                            <option value="java">Java</option>
-                            <option value="css">CSS</option>
-                          </Select>
-                        </FormControl>
+                      {values.type === "link" ? (
                         <FormControl
-                          isInvalid={
-                            errors.codeString !== undefined &&
-                            touched.codeString
-                          }
+                          isInvalid={errors.url !== undefined && touched.url}
                         >
                           <FormLabel
                             fontSize="sm"
                             fontWeight="medium"
                             textColor="gray.700"
                           >
-                            Code Snippet
+                            URL
                           </FormLabel>
-                          <Textarea
-                            display="block"
+                          <Input
                             _focus={{
                               outline: "none",
                               borderColor: "purple.400",
                               ring: "1px",
                               ringColor: "purple.400",
                             }}
-                            name="codeString"
+                            name="url"
                             onChange={handleChange}
                             onBlur={handleBlur}
-                            value={values.codeString}
+                            value={values.url}
                           />
                           <FormErrorMessage>
                             <Icon
@@ -302,58 +225,130 @@ export const AddMessage = (props) => {
                               textColor="red.400"
                               aria-hidden="true"
                             />
-                            {errors.codeString}
+                            {errors.url}
                           </FormErrorMessage>
                         </FormControl>
-                      </>
-                    )}
-                  </Stack>
-                </ModalBody>
-                <ModalFooter>
-                  <Stack direction="row" spacing={3}>
-                    <Button
-                      onClick={onClose}
-                      fontWeight="medium"
-                      fontSize="sm"
-                      _focus={{
-                        outline: "none",
-                        ring: "2px",
-                        ringOffset: "2px",
-                        ringColor: "purple.400",
-                      }}
-                    >
-                      Close
-                    </Button>
-                    <Button
-                      type="submit"
-                      form="new-message-form"
-                      colorScheme="purple"
-                      fontWeight="medium"
-                      fontSize="sm"
-                      _focus={{
-                        outline: "none",
-                        ring: "2px",
-                        ringOffset: "2px",
-                        ringColor: "purple.400",
-                      }}
-                      leftIcon={
-                        <Icon
-                          as={CheckIcon}
-                          width={5}
-                          height={5}
-                          textColor="purple.200"
-                          aria-hidden="true"
-                        />
-                      }
-                      isLoading={isSubmitting}
-                      loadingText="Adding message. Please wait..."
-                    >
-                      Save
-                    </Button>
-                  </Stack>
-                </ModalFooter>
-              </>
-            )}
+                      ) : (
+                        <>
+                          <FormControl>
+                            <FormLabel
+                              fontSize="sm"
+                              fontWeight="medium"
+                              textColor="gray.700"
+                            >
+                              Language
+                            </FormLabel>
+                            <Select
+                              _focus={{
+                                outline: "none",
+                                borderColor: "purple.400",
+                                ring: "1px",
+                                ringColor: "purple.400",
+                              }}
+                              name="language"
+                              onChange={handleChange}
+                              onBlur={handleBlur}
+                              value={values.language}
+                            >
+                              <option value="javascript">JavaScript</option>
+                              <option value="jsx">JSX</option>
+                              <option value="ruby">Ruby</option>
+                              <option value="python">Python</option>
+                              <option value="typescript">TypeScript</option>
+                              <option value="tsx">TSX</option>
+                              <option value="java">Java</option>
+                              <option value="css">CSS</option>
+                            </Select>
+                          </FormControl>
+                          <FormControl
+                            isInvalid={
+                              errors.codeString !== undefined &&
+                              touched.codeString
+                            }
+                          >
+                            <FormLabel
+                              fontSize="sm"
+                              fontWeight="medium"
+                              textColor="gray.700"
+                            >
+                              Code Snippet
+                            </FormLabel>
+                            <Textarea
+                              display="block"
+                              _focus={{
+                                outline: "none",
+                                borderColor: "purple.400",
+                                ring: "1px",
+                                ringColor: "purple.400",
+                              }}
+                              name="codeString"
+                              onChange={handleChange}
+                              onBlur={handleBlur}
+                              value={values.codeString}
+                            />
+                            <FormErrorMessage>
+                              <Icon
+                                as={ExclamationCircleIcon}
+                                mr={1.5}
+                                width={5}
+                                height={5}
+                                flexShrink={0}
+                                textColor="red.400"
+                                aria-hidden="true"
+                              />
+                              {errors.codeString}
+                            </FormErrorMessage>
+                          </FormControl>
+                        </>
+                      )}
+                    </Stack>
+                  </ModalBody>
+                  <ModalFooter>
+                    <Stack direction="row" spacing={3}>
+                      <Button
+                        onClick={onClose}
+                        fontWeight="medium"
+                        fontSize="sm"
+                        _focus={{
+                          outline: "none",
+                          ring: "2px",
+                          ringOffset: "2px",
+                          ringColor: "purple.400",
+                        }}
+                      >
+                        Close
+                      </Button>
+                      <Button
+                        type="submit"
+                        form="new-message-form"
+                        colorScheme="purple"
+                        fontWeight="medium"
+                        fontSize="sm"
+                        _focus={{
+                          outline: "none",
+                          ring: "2px",
+                          ringOffset: "2px",
+                          ringColor: "purple.400",
+                        }}
+                        leftIcon={
+                          <Icon
+                            as={CheckIcon}
+                            width={5}
+                            height={5}
+                            textColor="purple.200"
+                            aria-hidden="true"
+                          />
+                        }
+                        isLoading={isSubmitting}
+                        loadingText="Adding message. Please wait..."
+                      >
+                        Save
+                      </Button>
+                    </Stack>
+                  </ModalFooter>
+                </>
+              );
+            }}
           </Formik>
         </ModalContent>
       </Modal>
