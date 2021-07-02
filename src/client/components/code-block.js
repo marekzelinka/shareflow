@@ -26,11 +26,39 @@ SyntaxHighlighter.registerLanguage("tsx", tsx);
 SyntaxHighlighter.registerLanguage("java", java);
 SyntaxHighlighter.registerLanguage("css", css);
 
+const CopyButton = (props) => {
+  const { text } = props;
+
+  const { hasCopied, onCopy } = useClipboard(text);
+
+  return (
+    <IconButton
+      size="xs"
+      variant="unstyled"
+      aria-label={hasCopied ? "Copied" : "Copy"}
+      icon={
+        <Icon
+          as={hasCopied ? ClipboardCheckIcon : ClipboardIcon}
+          width={5}
+          height={5}
+          flexShrink={0}
+          textColor="currentcolor"
+          aria-hidden="true"
+        />
+      }
+      textColor="gray.400"
+      _hover={{
+        textColor: "gray.200",
+      }}
+      onClick={onCopy}
+    />
+  );
+};
+
 export const CodeBlock = (props) => {
   const { language, codeString } = props;
 
   const theme = useTheme();
-  const { hasCopied, onCopy } = useClipboard(codeString);
 
   return (
     <Box position="relative">
@@ -46,26 +74,7 @@ export const CodeBlock = (props) => {
         {codeString}
       </SyntaxHighlighter>
       <Box position="absolute" top={2} right={4}>
-        <IconButton
-          size="xs"
-          variant="unstyled"
-          aria-label={hasCopied ? "Copied" : "Copy"}
-          icon={
-            <Icon
-              as={hasCopied ? ClipboardCheckIcon : ClipboardIcon}
-              width={5}
-              height={5}
-              flexShrink={0}
-              textColor="currentcolor"
-              aria-hidden="true"
-            />
-          }
-          textColor="gray.400"
-          _hover={{
-            textColor: "gray.200",
-          }}
-          onClick={onCopy}
-        />
+        <CopyButton text={codeString} />
       </Box>
     </Box>
   );
