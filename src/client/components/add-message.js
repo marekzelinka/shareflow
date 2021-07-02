@@ -21,11 +21,7 @@ import {
   FormErrorMessage,
   useToast,
 } from "@chakra-ui/react";
-import {
-  ExclamationCircleIcon,
-  PlusIcon,
-  CheckIcon,
-} from "@heroicons/react/solid";
+import { ExclamationCircleIcon, PlusIcon } from "@heroicons/react/solid";
 import { Formik } from "formik";
 import { isValidUrl } from "client/utils";
 import { useCreateMessageMutation } from "client/hooks";
@@ -111,7 +107,7 @@ export const AddMessage = (props) => {
         isCentered
       >
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent overflow="hidden">
           <ModalHeader fontSize="lg" fontWeight="medium" textColor="gray.900">
             New Message
           </ModalHeader>
@@ -303,10 +299,15 @@ export const AddMessage = (props) => {
                     )}
                   </Stack>
                 </ModalBody>
-                <ModalFooter>
+                <ModalFooter
+                  borderTopWidth={1}
+                  borderTopColor="gray.200"
+                  backgroundColor="gray.50"
+                >
                   <Stack direction="row" spacing={3}>
                     <Button
                       onClick={onClose}
+                      variant="outline"
                       fontWeight="medium"
                       fontSize="sm"
                       _focus={{
@@ -330,15 +331,6 @@ export const AddMessage = (props) => {
                         ringOffset: "2px",
                         ringColor: "purple.400",
                       }}
-                      leftIcon={
-                        <Icon
-                          as={CheckIcon}
-                          width={5}
-                          height={5}
-                          textColor="purple.200"
-                          aria-hidden="true"
-                        />
-                      }
                       isLoading={isSubmitting}
                       loadingText="Adding message. Please wait..."
                     >
