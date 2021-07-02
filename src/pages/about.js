@@ -32,8 +32,8 @@ const About = () => {
             Get your attendees involved
           </Heading>
           <Text mt={2}>
-            You can share usefull links and snippets with others. For code
-            snippets we support 8 programming languages.
+            You can share useful links and snippets with others. For code
+            snippets, we support 8 programming languages.
           </Text>
           <Divider mt={6} />
           <Heading
@@ -46,9 +46,24 @@ const About = () => {
             Contact
           </Heading>
           <Text mt={2}>
-            shareflow has been created by Marek Zelinka. You can find him on
-            Twitter, <Link>@mzelinka17</Link>, or{" "}
-            <Link>reach out via email</Link>.
+            shareflow has been created by Marek Zelinka. You can find out more
+            about him on his{" "}
+            <Link
+              href="https://www.marekzelinka.dev/"
+              fontWeight="medium"
+              textColor="purple.600"
+            >
+              website
+            </Link>
+            , or{" "}
+            <Link
+              href="mailto:mzelinka17@gmail.com"
+              fontWeight="medium"
+              textColor="purple.600"
+            >
+              reach out via email
+            </Link>
+            .
           </Text>
         </Box>
       </Layout.Content>
