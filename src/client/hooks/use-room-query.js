@@ -1,4 +1,5 @@
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
+import { useEffect } from "react";
 import { supabase } from "client/lib/supabase";
 
 const getRoomById = async (slug) => {
@@ -31,7 +32,32 @@ const getRoomById = async (slug) => {
 };
 
 export const useRoomQuery = (slug) => {
-  return useQuery(["rooms", slug], () => getRoomById(slug), {
+  const queryClient = useQueryClient();
+  const roomResult = useQuery(["rooms", slug], () => getRoomById(slug), {
     enabled: slug !== undefined,
   });
+  const room = roomResult.data;
+
+  useEffect(() => {
+    if (room?.id !== undefined) {
+      const subscription = supabase
+        .from(`messages:room_id=eq.${room.id}`)
+        .on("INSERT", async (payload) => {
+          await queryClient.cancelQueries(["rooms", slug]);
+
+          queryClient.setQueryData(["rooms", slug], (old) => ({
+            ...old,
+            messages: [payload.new, ...old.messages],
+          }));
+        })
+        .subscribe();
+
+      const cleanup = () => {
+        supabase.removeSubscription(subscription);
+      };
+      return cleanup;
+    }
+  }, [queryClient, room?.id, slug]);
+
+  return roomResult;
 };
