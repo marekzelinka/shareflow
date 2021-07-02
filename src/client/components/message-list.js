@@ -20,6 +20,7 @@ const MessageItem = (props) => {
           fontWeight="medium"
           textColor="purple.600"
           isTruncated
+          isExternal
           href={message.url}
         >
           {message.url}
