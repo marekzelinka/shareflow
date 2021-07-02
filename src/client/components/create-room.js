@@ -12,7 +12,7 @@ import {
 import { Formik } from "formik";
 import { ExclamationCircleIcon, PlusCircleIcon } from "@heroicons/react/solid";
 import { useRouter } from "next/router";
-import { generateSlug } from "client/utils";
+import { generateSlug, slugify } from "client/utils";
 import { useCreateRoomMutation } from "client/hooks";
 
 const initialValues = { slug: generateSlug(), title: "", host: "" };
@@ -38,7 +38,7 @@ export const CreateRoom = () => {
 
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
     createRoomResult.mutate(
-      { values },
+      { values: { ...values, slug: slugify(values.slug) } },
       {
         onSuccess: ({ slug }) => {
           resetForm();
