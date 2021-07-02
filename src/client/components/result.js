@@ -19,7 +19,7 @@ export const Result = (props) => {
       textAlign="center"
       pt={6}
       pb={5}
-      rounded="md"
+      rounded="lg"
     >
       <AlertIcon boxSize={10} mr={0} />
       <AlertTitle mt={4} mb={1} fontSize="lg">
