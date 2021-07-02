@@ -32,6 +32,7 @@ const NavLink = (props) => {
             textColor: "gray.700",
             textDecoration: "none",
           }}
+          _active={undefined}
           aria-current={isCurrent ? "page" : undefined}
           _activeLink={{
             backgroundColor: "gray.100",
