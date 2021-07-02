@@ -1,7 +1,6 @@
-import { Box, Button, Container } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import {
-  Nav,
   RoomHeader,
   RoomMessages,
   Layout,
@@ -24,41 +23,31 @@ const Room = () => {
   return (
     <Layout title={title}>
       <Box position="relative" minHeight="100vh" backgroundColor="white">
-        <Nav />
+        <Layout.Nav />
         {roomResult.error ? (
-          <Box as="main" pt={8} pb={16}>
-            <Container mx="auto" px={{ base: 0, sm: 6, lg: 8 }} maxWidth="2xl">
-              <Result
-                title="Uh oh! Something went wrong :("
-                description="A room with this ID doesn't exist, or an error occurred. Please try again."
-                status="error"
-              >
-                <Button>Click here</Button>
-              </Result>
-            </Container>
-          </Box>
+          <Layout.Content>
+            <Result
+              title="Uh oh! Something went wrong :("
+              description="A room with this ID doesn't exist, or an error occurred. Please try again."
+              status="error"
+            />
+          </Layout.Content>
         ) : room === undefined ? (
-          <Box as="main" pt={8} pb={16}>
-            <Container mx="auto" px={{ base: 0, sm: 6, lg: 8 }} maxWidth="2xl">
-              <Spinner tip="Loading room" />
-            </Container>
-          </Box>
+          <Layout.Content>
+            <Spinner tip="Loading room" />
+          </Layout.Content>
         ) : (
           <>
-            <RoomHeader room={room} />
-            <Box as="main" pt={8} pb={16}>
-              <Container
-                mx="auto"
-                px={{ base: 0, sm: 6, lg: 8 }}
-                maxWidth="2xl"
-              >
-                <RoomMessages
-                  roomId={room.id}
-                  roomSlug={slug}
-                  messages={room.messages}
-                />
-              </Container>
-            </Box>
+            <Layout.Header>
+              <RoomHeader room={room} />
+            </Layout.Header>
+            <Layout.Content>
+              <RoomMessages
+                roomId={room.id}
+                roomSlug={slug}
+                messages={room.messages}
+              />
+            </Layout.Content>
           </>
         )}
       </Box>

@@ -73,81 +73,71 @@ export const RoomHeader = (props) => {
   const router = useRouter();
 
   return (
-    <Box as="header" py={8} backgroundColor="gray.50">
-      <Container
-        mx="auto"
-        px={{ base: 4, sm: 6, lg: 8 }}
-        maxWidth="2xl"
-        display={{ base: "block", md: "flex" }}
-        alignItems={{ md: "center" }}
-        justifyContent={{ md: "space-between" }}
-      >
-        <Box flex={1} minWidth={0}>
-          <Heading
-            as="h1"
-            size="md"
-            fontWeight="bold"
-            textColor="gray.900"
-            isTruncated
-          >
-            {room.title}
-          </Heading>
-          <Flex
-            mt={{ base: 1, sm: 0 }}
-            flexDirection={{ base: "column", sm: "row" }}
-            flexWrap={{ sm: "wrap" }}
-          >
-            <Flex mt={2} alignItems="center" fontSize="sm" textColor="gray.500">
-              <Icon
-                as={CalendarIcon}
-                mr={1.5}
-                width={5}
-                height={5}
-                flexShrink={0}
-                textColor="gray.400"
-                aria-hidden="true"
-              />
-              {formatDate(room.inserted_at)}
-            </Flex>
-            <Flex
-              mt={2}
-              ml={{ sm: 8 }}
-              alignItems="center"
-              fontSize="sm"
-              textColor="gray.500"
-            >
-              <Icon
-                as={UserIcon}
-                mr={1.5}
-                width={5}
-                height={5}
-                flexShrink={0}
-                textColor="gray.400"
-                aria-hidden="true"
-              />
-              {room.host}
-            </Flex>
-          </Flex>
-        </Box>
-        <Stack
-          mt={{ base: 5, md: 0 }}
-          ml={{ md: 4 }}
-          spacing={3}
-          direction="row"
+    <Box
+      display={{ base: "block", md: "flex" }}
+      alignItems={{ md: "center" }}
+      justifyContent={{ md: "space-between" }}
+    >
+      <Box flex={1} minWidth={0}>
+        <Heading
+          as="h1"
+          size="md"
+          fontWeight="bold"
+          textColor="gray.900"
+          isTruncated
         >
-          <Box>
-            <ShareButton
-              shareData={{
-                title: `${room.title}, hosted by ${room.host}`,
-                text: "Collaborate with other attendees!",
-                url: router.asPath,
-              }}
-            >
-              Share URL
-            </ShareButton>
-          </Box>
-        </Stack>
-      </Container>
+          {room.title}
+        </Heading>
+        <Flex
+          mt={{ base: 1, sm: 0 }}
+          flexDirection={{ base: "column", sm: "row" }}
+          flexWrap={{ sm: "wrap" }}
+        >
+          <Flex mt={2} alignItems="center" fontSize="sm" textColor="gray.500">
+            <Icon
+              as={CalendarIcon}
+              mr={1.5}
+              width={5}
+              height={5}
+              flexShrink={0}
+              textColor="gray.400"
+              aria-hidden="true"
+            />
+            {formatDate(room.inserted_at)}
+          </Flex>
+          <Flex
+            mt={2}
+            ml={{ sm: 8 }}
+            alignItems="center"
+            fontSize="sm"
+            textColor="gray.500"
+          >
+            <Icon
+              as={UserIcon}
+              mr={1.5}
+              width={5}
+              height={5}
+              flexShrink={0}
+              textColor="gray.400"
+              aria-hidden="true"
+            />
+            {room.host}
+          </Flex>
+        </Flex>
+      </Box>
+      <Stack mt={{ base: 5, md: 0 }} ml={{ md: 4 }} spacing={3} direction="row">
+        <Box>
+          <ShareButton
+            shareData={{
+              title: `${room.title}, hosted by ${room.host}`,
+              text: "Collaborate with other attendees!",
+              url: router.asPath,
+            }}
+          >
+            Share URL
+          </ShareButton>
+        </Box>
+      </Stack>
     </Box>
   );
 };
