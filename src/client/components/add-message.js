@@ -49,7 +49,7 @@ const validate = (values) => {
 };
 
 export const AddMessage = (props) => {
-  const { roomId, roomSlug } = props;
+  const { roomId } = props;
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
@@ -57,8 +57,11 @@ export const AddMessage = (props) => {
 
   const handleSubmit = (values, { setSubmitting }) => {
     createMessageResult.mutate(
-      { roomId, roomSlug, values },
+      { roomId, values },
       {
+        onSuccess: () => {
+          onClose();
+        },
         onError: () => {
           toast({
             title: "Uh oh! Something went wrong :(",
@@ -71,7 +74,6 @@ export const AddMessage = (props) => {
         },
         onSettled: () => {
           setSubmitting(false);
-          onClose();
         },
       }
     );

@@ -42,11 +42,7 @@ const Room = () => {
               <RoomHeader room={room} />
             </Layout.Header>
             <Layout.Content>
-              <RoomMessages
-                roomId={room.id}
-                roomSlug={slug}
-                messages={room.messages}
-              />
+              <RoomMessages roomId={room.id} messages={room.messages} />
             </Layout.Content>
           </>
         )}
