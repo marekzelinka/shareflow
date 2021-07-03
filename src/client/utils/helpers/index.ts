@@ -1,10 +1,10 @@
 import { format } from "date-fns";
 
-const getRandomNumber = (min, max) => {
+const getRandomNumber = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min)) + min;
 };
 
-export const formatDate = (value) => {
+export const formatDate = (value: string | number | Date) => {
   return format(new Date(value), "MMMM d, yyyy 'at' p");
 };
 
@@ -74,7 +74,7 @@ export const generateSlug = () => {
   return `${adverb}-${noun}-${randomNumber}`;
 };
 
-export const isValidUrl = (string) => {
+export const isValidUrl = (string: string) => {
   const validUrlPattern = new RegExp(
     "^(https?:\\/\\/)?" + // protocol
       "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
@@ -89,7 +89,7 @@ export const isValidUrl = (string) => {
 };
 
 // https://gist.github.com/mathewbyrne/1280286#gistcomment-3753527
-export const slugify = (text, separator) => {
+export const slugify = (text: string, separator?: string) => {
   const sets = [
     { to: "a", from: "[ÀÁÂÃÅÆĀĂĄẠẢẤẦẨẪẬẮẰẲẴẶ]" },
     { to: "ae", from: "[Ä]" },
