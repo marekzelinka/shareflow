@@ -3,9 +3,12 @@ import { useRouter } from "next/router";
 import {
   RoomHeader,
   RoomMessages,
-  Layout,
   Result,
   Spinner,
+  Layout,
+  LayoutNav,
+  LayoutHeader,
+  LayoutContent,
 } from "client/components";
 import { useRoomQuery } from "client/utils/hooks";
 
@@ -23,27 +26,27 @@ const Room = () => {
   return (
     <Layout title={title}>
       <Box position="relative" minHeight="100vh" backgroundColor="white">
-        <Layout.Nav />
+        <LayoutNav />
         {roomResult.error ? (
-          <Layout.Content>
+          <LayoutContent>
             <Result
               title="Uh oh! Something went wrong :("
               description="A room with this ID doesn't exist, or an error occurred. Please try again."
               status="error"
             />
-          </Layout.Content>
+          </LayoutContent>
         ) : room === undefined ? (
-          <Layout.Content>
+          <LayoutContent>
             <Spinner tip="Loading room" />
-          </Layout.Content>
+          </LayoutContent>
         ) : (
           <>
-            <Layout.Header>
+            <LayoutHeader>
               <RoomHeader room={room} />
-            </Layout.Header>
-            <Layout.Content>
+            </LayoutHeader>
+            <LayoutContent>
               <RoomMessages roomId={room.id} messages={room.messages} />
-            </Layout.Content>
+            </LayoutContent>
           </>
         )}
       </Box>

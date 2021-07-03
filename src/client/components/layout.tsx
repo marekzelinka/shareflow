@@ -112,8 +112,6 @@ export const LayoutNav = () => (
   </Box>
 );
 
-Layout.Nav = LayoutNav;
-
 interface LayoutHeaderProps {
   children: ReactNode;
 }
@@ -126,18 +124,14 @@ export const LayoutHeader = ({ children }: LayoutHeaderProps) => (
   </Box>
 );
 
-Layout.Header = LayoutHeader;
-
 interface LayoutContentProps {
   children: ReactNode;
 }
 
-const LayoutContent = ({ children }: LayoutContentProps) => (
+export const LayoutContent = ({ children }: LayoutContentProps) => (
   <Box as="main" pt={8} pb={16}>
     <Container mx="auto" px={{ base: 0, sm: 6, lg: 8 }} maxWidth="2xl">
       {children}
     </Container>
   </Box>
 );
-
-Layout.Content = LayoutContent;
