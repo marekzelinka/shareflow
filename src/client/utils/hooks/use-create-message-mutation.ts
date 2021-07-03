@@ -17,17 +17,16 @@ const createMessage = async ({ roomId, values }: Variables) => {
         ? {
             room_id: roomId,
             type: values.type,
-            url: undefined,
+            url: values.url?.trim(),
             code_string: undefined,
+            language: undefined,
           }
         : {
             room_id: roomId,
             type: values.type,
             url: undefined,
             language: values.language,
-            code_string: values.code_string
-              ? values.code_string.trim()
-              : undefined,
+            code_string: values.code_string?.trim(),
           }
     )
     .single();
