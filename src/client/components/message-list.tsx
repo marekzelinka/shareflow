@@ -2,14 +2,17 @@ import { Box, Flex, List, ListItem, Link, Icon } from "@chakra-ui/react";
 import { CalendarIcon } from "@heroicons/react/solid";
 import { formatDate } from "client/utils/helpers";
 import { Message } from "client/utils/types";
+import { motion } from "framer-motion";
 import { CodeBlock } from "./code-block";
+
+const MotionBox = motion(Box);
 
 interface MessageItemProps {
   message: Message;
 }
 
 const MessageItem = ({ message }: MessageItemProps) => (
-  <Box py={{ base: 5, sm: 6 }} px={{ base: 4, sm: 0 }}>
+  <MotionBox py={{ base: 5, sm: 6 }} px={{ base: 4, sm: 0 }} layout>
     {message.type === "link" ? (
       <Link
         display="block"
@@ -37,7 +40,7 @@ const MessageItem = ({ message }: MessageItemProps) => (
       />
       {formatDate(message.inserted_at)}
     </Flex>
-  </Box>
+  </MotionBox>
 );
 
 interface MessageListProps {
