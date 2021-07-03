@@ -1,9 +1,16 @@
 import { useMutation } from "react-query";
 import { supabase } from "client/lib/supabase";
+import { Room } from "../types";
 
-const joinRoom = async ({ values }) => {
+type Data = Pick<Room, "slug">;
+
+interface Variables {
+  values: Pick<Room, "slug">;
+}
+
+const joinRoom = async ({ values }: Variables) => {
   const selectResult = await supabase
-    .from("rooms")
+    .from<Data>("rooms")
     .select("slug")
     .eq("slug", values.slug.trim())
     .single();
@@ -15,5 +22,5 @@ const joinRoom = async ({ values }) => {
 };
 
 export const useJoinRoomMutation = () => {
-  return useMutation(joinRoom);
+  return useMutation<Data, Error, Variables>(joinRoom);
 };
