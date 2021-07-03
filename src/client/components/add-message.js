@@ -23,8 +23,8 @@ import {
 } from "@chakra-ui/react";
 import { ExclamationCircleIcon, PlusIcon } from "@heroicons/react/solid";
 import { Formik } from "formik";
-import { isValidUrl } from "client/utils";
-import { useCreateMessageMutation } from "client/hooks";
+import { isValidUrl } from "client/utils/helpers";
+import { useCreateMessageMutation } from "client/utils/hooks";
 
 const initialValues = {
   type: "link",

@@ -1,7 +1,7 @@
 import { Box, Flex, List, ListItem, Link, Icon } from "@chakra-ui/react";
 import { CalendarIcon } from "@heroicons/react/solid";
 import dynamic from "next/dynamic";
-import { formatDate } from "client/utils";
+import { formatDate } from "client/utils/helpers";
 
 const CodeBlock = dynamic(
   () => import("./code-block").then((mod) => mod.CodeBlock),

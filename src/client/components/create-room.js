@@ -12,8 +12,8 @@ import {
 import { Formik } from "formik";
 import { ExclamationCircleIcon, PlusCircleIcon } from "@heroicons/react/solid";
 import { useRouter } from "next/router";
-import { generateSlug, slugify } from "client/utils";
-import { useCreateRoomMutation } from "client/hooks";
+import { generateSlug, slugify } from "client/utils/helpers";
+import { useCreateRoomMutation } from "client/utils/hooks";
 
 const initialValues = { slug: generateSlug(), title: "", host: "" };
 

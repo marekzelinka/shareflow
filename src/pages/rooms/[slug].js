@@ -7,7 +7,7 @@ import {
   Result,
   Spinner,
 } from "client/components";
-import { useRoomQuery } from "client/hooks";
+import { useRoomQuery } from "client/utils/hooks";
 
 const Room = () => {
   const router = useRouter();

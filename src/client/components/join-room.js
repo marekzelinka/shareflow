@@ -12,7 +12,7 @@ import {
 import { Formik } from "formik";
 import { ExclamationCircleIcon, PlusCircleIcon } from "@heroicons/react/solid";
 import { useRouter } from "next/router";
-import { useJoinRoomMutation } from "client/hooks";
+import { useJoinRoomMutation } from "client/utils/hooks";
 
 const initialValues = { slug: "" };
 

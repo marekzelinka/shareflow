@@ -1,6 +1,5 @@
 import {
   Box,
-  Container,
   Flex,
   Stack,
   Button,
@@ -11,7 +10,7 @@ import {
 import { CalendarIcon, UserIcon, ShareIcon } from "@heroicons/react/solid";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { formatDate } from "client/utils";
+import { formatDate } from "client/utils/helpers";
 
 const ShareButton = (props) => {
   const { shareData, children, ...restProps } = props;
