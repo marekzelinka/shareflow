@@ -1,9 +1,11 @@
 import { Box, Spinner as ChakraSpinner, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
-export const Spinner = (props) => {
-  const { tip = "Loading" } = props;
+interface SpinnerProps {
+  tip?: string;
+}
 
+export const Spinner = ({ tip = "Loading" }: SpinnerProps) => {
   const [content, setContent] = useState(tip);
 
   useEffect(() => {

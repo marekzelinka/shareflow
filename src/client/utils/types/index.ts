@@ -2,6 +2,7 @@ interface BaseMessage {
   id: string;
   type: "link" | "snippet";
   inserted_at: string;
+  room_id: string;
 }
 
 interface LinkMessage extends BaseMessage {
@@ -19,6 +20,11 @@ interface SnippetMessage extends BaseMessage {
 }
 
 export type Message = LinkMessage | SnippetMessage;
+
+export type NewMessage = Pick<
+  Message,
+  "type" | "url" | "language" | "code_string"
+>;
 
 export interface Room {
   id: string;

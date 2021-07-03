@@ -8,13 +8,17 @@ import {
   TabPanel,
   Stack,
 } from "@chakra-ui/react";
+import { Message } from "client/utils/types";
 import { AddMessage } from "./add-message";
 import { Empty } from "./empty";
 import { MessageList } from "./message-list";
 
-export const RoomMessages = (props) => {
-  const { roomId, messages } = props;
+interface RoomMessagesProps {
+  roomId: string;
+  messages: Message[];
+}
 
+export const RoomMessages = ({ roomId, messages }: RoomMessagesProps) => {
   const links = messages.filter((message) => message.type === "link");
   const snippets = messages.filter((message) => message.type === "snippet");
 

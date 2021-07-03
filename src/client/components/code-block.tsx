@@ -26,9 +26,11 @@ SyntaxHighlighter.registerLanguage("tsx", tsx);
 SyntaxHighlighter.registerLanguage("java", java);
 SyntaxHighlighter.registerLanguage("css", css);
 
-const CopyButton = (props) => {
-  const { text } = props;
+interface CopyButtonProps {
+  text: string;
+}
 
+const CopyButton = ({ text }: CopyButtonProps) => {
   const { hasCopied, onCopy } = useClipboard(text);
 
   return (
@@ -55,9 +57,12 @@ const CopyButton = (props) => {
   );
 };
 
-export const CodeBlock = (props) => {
-  const { language, codeString } = props;
+interface CodeBlockProps {
+  language: string;
+  codeString: string;
+}
 
+export const CodeBlock = ({ language, codeString }: CodeBlockProps) => {
   const theme = useTheme();
 
   return (

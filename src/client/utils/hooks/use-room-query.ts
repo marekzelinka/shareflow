@@ -1,10 +1,13 @@
 import { useQuery, useQueryClient } from "react-query";
 import { useEffect } from "react";
 import { supabase } from "client/lib/supabase";
+import { Message, Room } from "../types";
 
-const getRoomById = async (slug) => {
+type Data = Room;
+
+const getRoomById = async (slug: Room["slug"]) => {
   const selectResult = await supabase
-    .from("rooms")
+    .from<Room>("rooms")
     .select(
       `
       id,
@@ -31,24 +34,34 @@ const getRoomById = async (slug) => {
   return selectResult.data;
 };
 
-export const useRoomQuery = (slug) => {
+export const useRoomQuery = (slug: Room["slug"]) => {
   const queryClient = useQueryClient();
-  const roomResult = useQuery(["rooms", slug], () => getRoomById(slug), {
-    enabled: slug !== undefined,
-  });
+  const roomResult = useQuery<Data, Error>(
+    ["rooms", slug],
+    () => getRoomById(slug),
+    {
+      enabled: slug !== undefined,
+    }
+  );
   const room = roomResult.data;
 
   useEffect(() => {
     if (room?.id !== undefined) {
       const subscription = supabase
-        .from(`messages:room_id=eq.${room.id}`)
+        .from<Message>(`messages:room_id=eq.${room.id}`)
         .on("INSERT", async (payload) => {
           await queryClient.cancelQueries(["rooms", slug]);
 
-          queryClient.setQueryData(["rooms", slug], (old) => ({
-            ...old,
-            messages: [payload.new, ...old.messages],
-          }));
+          queryClient.setQueryData<Room | undefined>(["rooms", slug], (old) => {
+            if (old === undefined) {
+              return undefined;
+            }
+
+            return {
+              ...old,
+              messages: [payload.new, ...old.messages],
+            };
+          });
         })
         .subscribe();
 

@@ -11,7 +11,7 @@ import { useRoomQuery } from "client/utils/hooks";
 
 const Room = () => {
   const router = useRouter();
-  const { slug } = router.query;
+  const { slug } = router.query as { slug: string };
   const roomResult = useRoomQuery(slug);
   const room = roomResult.data;
   const title = roomResult.error

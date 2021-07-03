@@ -9,12 +9,20 @@ import {
 } from "@chakra-ui/react";
 import { CalendarIcon, UserIcon, ShareIcon } from "@heroicons/react/solid";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import { formatDate } from "client/utils/helpers";
+import { Room } from "client/utils/types";
 
-const ShareButton = (props) => {
-  const { shareData, children, ...restProps } = props;
+interface ShareButtonProps {
+  shareData: {
+    text?: string;
+    title?: string;
+    url?: string;
+  };
+  children: ReactNode;
+}
 
+const ShareButton = ({ shareData, children }: ShareButtonProps) => {
   const toast = useToast();
   const [isSharingUrl, setIsSharingUrl] = useState(false);
 
@@ -50,7 +58,6 @@ const ShareButton = (props) => {
       }}
       onClick={shareUrl}
       isLoading={isSharingUrl}
-      {...restProps}
     >
       <Icon
         as={ShareIcon}
@@ -66,9 +73,11 @@ const ShareButton = (props) => {
   );
 };
 
-export const RoomHeader = (props) => {
-  const { room } = props;
+interface RoomHeaderProps {
+  room: Room;
+}
 
+export const RoomHeader = ({ room }: RoomHeaderProps) => {
   const router = useRouter();
 
   return (
