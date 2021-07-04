@@ -18,13 +18,13 @@ type NavLinkProps = {
   href: string;
 } & Omit<LinkProps, "href">;
 
-const NavLink = ({ href, ...restProps }: NavLinkProps) => {
+const NavLink = ({ href, ...props }: NavLinkProps) => {
   const router = useRouter();
   const isCurrent = href === router.pathname;
 
   return (
     <NextLink href={href} passHref>
-      <Link aria-current={isCurrent ? "page" : undefined} {...restProps} />
+      <Link aria-current={isCurrent ? "page" : undefined} {...props} />
     </NextLink>
   );
 };
@@ -33,7 +33,7 @@ type NavButtonLinkProps = {
   href: string;
 } & Omit<ButtonProps, "href">;
 
-const NavButtonLink = ({ href, ...restProps }: NavButtonLinkProps) => {
+const NavButtonLink = ({ href, ...props }: NavButtonLinkProps) => {
   const router = useRouter();
   const isCurrent = href === router.pathname;
 
@@ -54,7 +54,7 @@ const NavButtonLink = ({ href, ...restProps }: NavButtonLinkProps) => {
         _activeLink={{
           backgroundColor: "gray.100",
         }}
-        {...restProps}
+        {...props}
       />
     </NextLink>
   );
