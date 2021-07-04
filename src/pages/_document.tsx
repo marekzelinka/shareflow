@@ -5,11 +5,7 @@ class Document extends NextDocument {
     return (
       <Html lang="en">
         <Head>
-          <link
-            rel="shortcut icon"
-            href="/shareflow-logo-purple-600.svg"
-            type="image/svg"
-          />
+          <link rel="shortcut icon" href="/favicon.svg" type="image/svg" />
         </Head>
         <body>
           <Main />

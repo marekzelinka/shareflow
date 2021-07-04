@@ -1,5 +1,5 @@
-import { Flex, Box, Heading, Text, Stack, Image } from "@chakra-ui/react";
-import { Layout, CreateRoom, Divider, JoinRoom } from "client/components";
+import { Flex, Box, Heading, Text, Stack } from "@chakra-ui/react";
+import { Layout, CreateRoom, Divider, JoinRoom, Logo } from "client/components";
 import { motion } from "framer-motion";
 
 const MotionBox = motion(Box);
@@ -15,13 +15,7 @@ const Home = () => (
       backgroundColor="gray.50"
     >
       <Box mx={{ sm: "auto" }} width={{ sm: "full" }} maxWidth={{ sm: "md" }}>
-        <Image
-          mx="auto"
-          height={12}
-          width="auto"
-          src="/shareflow-logo-purple-600.svg"
-          alt=""
-        />
+        <Logo />
         <Heading
           as="h1"
           size="2xl"

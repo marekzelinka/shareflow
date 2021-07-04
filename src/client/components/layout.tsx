@@ -2,7 +2,6 @@ import {
   Box,
   Container,
   Flex,
-  Image,
   Stack,
   Button,
   Link,
@@ -13,6 +12,7 @@ import NextLink from "next/link";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { ReactNode } from "react";
+import { LogoWithMark } from "./logo";
 
 type NavLinkProps = {
   href: string;
@@ -92,12 +92,7 @@ export const LayoutNav = () => (
       >
         <Box flexShrink={0}>
           <NavLink href="/" aria-label="Home" display="block">
-            <Image
-              height={8}
-              width="auto"
-              src="/shareflow-logo-purple-600-mark-gray-800.svg"
-              alt=""
-            />
+            <LogoWithMark />
           </NavLink>
         </Box>
         <Box>

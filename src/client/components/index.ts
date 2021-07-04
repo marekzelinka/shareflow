@@ -10,3 +10,4 @@ export * from "./add-message";
 export * from "./empty";
 export * from "./result";
 export * from "./spinner";
+export * from "./logo";
