@@ -1,10 +1,15 @@
 import { Box, Divider, Heading, Link, Text } from "@chakra-ui/react";
-import { Layout } from "client/components";
+import {
+  Layout,
+  LayoutContent,
+  LayoutHeader,
+  LayoutNav,
+} from "client/components";
 
 const About = () => (
   <Layout title="About">
-    <Layout.Nav />
-    <Layout.Header>
+    <LayoutNav />
+    <LayoutHeader>
       <Heading
         as="h1"
         size="md"
@@ -14,8 +19,8 @@ const About = () => (
       >
         About
       </Heading>
-    </Layout.Header>
-    <Layout.Content>
+    </LayoutHeader>
+    <LayoutContent>
       <Box px={{ base: 4, sm: 0 }}>
         <Text fontSize="lg">
           shareflow is a helper for your presentations, where you can create a
@@ -65,7 +70,7 @@ const About = () => (
           .
         </Text>
       </Box>
-    </Layout.Content>
+    </LayoutContent>
   </Layout>
 );
 
