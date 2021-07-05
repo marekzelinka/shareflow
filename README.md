@@ -33,4 +33,4 @@ This was a 2-week long project built for my portfolio. Project goals included us
 
 I wanted to build an application that allowed users to create/join a room, share the URL with other individuals, and collaborate by sharing useful links and snippets!
 
-One of the main challenges I ran into was working with a SQL-based database like [supabase](https://supabase.io/), previously I worked with [Firebase](https://firebase.google.com/). This leads me to spend a few days on a research spike into SQL, and database design with PostgreSQL.
+One of the main challenges I ran into was working with a SQL-based database like [supabase](https://supabase.io/), previously I worked with [Firebase](https://firebase.google.com/). This led me to spend a few days on a research spike into SQL, and database design with PostgreSQL.
