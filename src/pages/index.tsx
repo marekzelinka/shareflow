@@ -43,7 +43,6 @@ const Home = () => (
         mx={{ sm: "auto" }}
         width={{ sm: "full" }}
         maxWidth={{ sm: "md" }}
-        overflow="hidden"
       >
         <MotionBox
           px={{ base: 4, sm: 10 }}
@@ -51,9 +50,9 @@ const Home = () => (
           backgroundColor="white"
           shadow="base"
           rounded={{ sm: "lg" }}
-          initial={{ y: 100 }}
-          animate={{ y: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.15, ease: "easeOut" }}
         >
           <CreateRoom />
           <Stack mt={6} spacing={6}>
