@@ -55,7 +55,7 @@ interface EmptyProps {
 }
 
 export const Empty = ({ title, description, children }: EmptyProps) => (
-  <Box pt={10} pb={8} textAlign="center">
+  <Box pt={6} pb={5} textAlign="center">
     {emptyIcon}
     <Heading as="h3" mt={6} size="md">
       {title}
