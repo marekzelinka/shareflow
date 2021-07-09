@@ -97,9 +97,7 @@ export const AddMessage = ({ roomId }: AddMessageProps) => {
       <Button
         onClick={onOpen}
         colorScheme="purple"
-        leftIcon={
-          <Icon as={PlusIcon} width={5} height={5} textColor="purple.200" />
-        }
+        leftIcon={<Icon as={PlusIcon} width={5} height={5} />}
       >
         Add message
       </Button>

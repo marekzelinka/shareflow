@@ -162,14 +162,7 @@ export const CreateRoom = () => {
                 type="submit"
                 colorScheme="purple"
                 isFullWidth
-                leftIcon={
-                  <Icon
-                    as={PlusCircleIcon}
-                    width={5}
-                    height={5}
-                    textColor="purple.200"
-                  />
-                }
+                leftIcon={<Icon as={PlusCircleIcon} width={5} height={5} />}
                 isLoading={isSubmitting}
                 loadingText="Creating room. Please wait..."
               >

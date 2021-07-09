@@ -26,7 +26,7 @@ export const Spinner = ({ tip = "Loading" }: SpinnerProps) => {
   }, [tip]);
 
   return (
-    <Box pt={10} pb={8} textAlign="center">
+    <Box pt={6} pb={5} textAlign="center">
       <ChakraSpinner
         thickness="4px"
         speed="0.65s"

@@ -2,16 +2,13 @@ import {
   Box,
   Container,
   Flex,
-  Stack,
   Button,
   Link,
   LinkProps,
   ButtonProps,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
-import Head from "next/head";
 import { useRouter } from "next/router";
-import { ReactNode } from "react";
 import { LogoWithMark } from "./logo";
 
 type NavLinkProps = {
@@ -58,25 +55,7 @@ const NavButtonLink = ({ href, ...props }: NavButtonLinkProps) => {
   );
 };
 
-interface LayoutProps {
-  title?: string;
-  children: ReactNode;
-}
-
-export const Layout = ({ title, children }: LayoutProps) => (
-  <>
-    <Head>
-      <title>
-        {title !== undefined ? `shareflow | ${title}` : "shareflow"}
-      </title>
-    </Head>
-    <Box minHeight="100vh" backgroundColor="gray.50">
-      {children}
-    </Box>
-  </>
-);
-
-export const LayoutNav = () => (
+export const Nav = () => (
   <Box as="nav" backgroundColor="white" borderBottomWidth={1}>
     <Container maxWidth="2xl" px={{ base: 4, sm: 6, lg: 8 }}>
       <Flex justifyContent="space-between" height={16}>
@@ -89,38 +68,6 @@ export const LayoutNav = () => (
           <NavButtonLink href="/about">About</NavButtonLink>
         </Flex>
       </Flex>
-    </Container>
-  </Box>
-);
-
-interface LayoutContentProps {
-  children: ReactNode;
-}
-
-export const LayoutContent = ({ children }: LayoutContentProps) => (
-  <Box py={8}>{children}</Box>
-);
-
-interface LayoutHeaderProps {
-  children: ReactNode;
-}
-
-export const LayoutHeader = ({ children }: LayoutHeaderProps) => (
-  <Box as="header">
-    <Container maxWidth="2xl" px={{ base: 4, sm: 6, lg: 8 }}>
-      {children}
-    </Container>
-  </Box>
-);
-
-interface LayoutMainProps {
-  children: ReactNode;
-}
-
-export const LayoutMain = ({ children }: LayoutMainProps) => (
-  <Box as="main" mt={10}>
-    <Container maxWidth="2xl" px={{ base: 0, sm: 6, lg: 8 }}>
-      {children}
     </Container>
   </Box>
 );

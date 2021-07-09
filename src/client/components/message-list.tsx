@@ -45,8 +45,8 @@ const MessageItem = ({ message }: MessageItemProps) => (
         <Icon
           as={CalendarIcon}
           textColor="gray.400"
-          width={5}
-          height={5}
+          width={4}
+          height={4}
           aria-hidden="true"
         />
         <Text as="span" fontSize="sm" textColor="gray.500">

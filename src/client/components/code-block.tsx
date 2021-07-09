@@ -42,8 +42,8 @@ const CopyButton = ({ text }: CopyButtonProps) => {
       icon={
         <Icon
           as={hasCopied ? ClipboardCheckIcon : ClipboardIcon}
-          width={5}
-          height={5}
+          width={4}
+          height={4}
           flexShrink={0}
           aria-hidden="true"
         />

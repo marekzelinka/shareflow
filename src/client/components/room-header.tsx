@@ -45,13 +45,12 @@ const ShareButton = ({ shareData, children }: ShareButtonProps) => {
 
   return (
     <Button
+      size="sm"
       variant="outline"
       backgroundColor="white"
       onClick={shareUrl}
       isLoading={isSharingUrl}
-      leftIcon={
-        <Icon as={ShareIcon} width={5} height={5} textColor="gray.500" />
-      }
+      leftIcon={<Icon as={ShareIcon} width={4} height={4} />}
     >
       {children}
     </Button>

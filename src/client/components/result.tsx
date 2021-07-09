@@ -28,8 +28,8 @@ export const Result = ({
     alignItems="center"
     justifyContent="center"
     textAlign="center"
-    pt={10}
-    pb={8}
+    pt={6}
+    pb={5}
     rounded="lg"
   >
     <AlertIcon boxSize={10} mr={0} />
