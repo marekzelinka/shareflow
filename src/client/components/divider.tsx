@@ -12,7 +12,7 @@ export const Divider = ({ children }: DividerProps) => (
     </Flex>
     {children !== undefined ? (
       <Flex position="relative" justifyContent="center" fontSize="sm">
-        <Text as="span" px={2} textColor="gray.500" backgroundColor="white">
+        <Text as="span" px={2} backgroundColor="white" textColor="gray.500">
           {children}
         </Text>
       </Flex>

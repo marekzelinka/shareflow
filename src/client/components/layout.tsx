@@ -41,9 +41,7 @@ const NavButtonLink = ({ href, ...props }: NavButtonLinkProps) => {
     <NextLink href={href} passHref>
       <Button
         as={Link}
-        fontSize="sm"
-        fontWeight="medium"
-        textColor="gray.900"
+        size="sm"
         backgroundColor="transparent"
         _hover={{
           textColor: "gray.700",
@@ -52,7 +50,7 @@ const NavButtonLink = ({ href, ...props }: NavButtonLinkProps) => {
         _active={undefined}
         aria-current={isCurrent ? "page" : undefined}
         _activeLink={{
-          backgroundColor: "gray.100",
+          backgroundColor: "gray.50",
         }}
         {...props}
       />
@@ -72,49 +70,25 @@ export const Layout = ({ title, children }: LayoutProps) => (
         {title !== undefined ? `shareflow | ${title}` : "shareflow"}
       </title>
     </Head>
-    {children}
+    <Box minHeight="100vh" backgroundColor="gray.50">
+      {children}
+    </Box>
   </>
 );
 
 export const LayoutNav = () => (
-  <Box
-    as="nav"
-    backgroundColor="gray.50"
-    borderBottomWidth={1}
-    borderBottomColor="gray.200"
-  >
-    <Container mx="auto" px={{ base: 4, sm: 6, lg: 8 }} maxWidth="2xl">
-      <Flex
-        height={16}
-        position="relative"
-        alignItems="center"
-        justifyContent="space-between"
-      >
-        <Box flexShrink={0}>
-          <NavLink href="/" aria-label="Home" display="block">
+  <Box as="nav" backgroundColor="white" borderBottomWidth={1}>
+    <Container maxWidth="2xl" px={{ base: 4, sm: 6, lg: 8 }}>
+      <Flex justifyContent="space-between" height={16}>
+        <Flex flexShrink={0} alignItems="center">
+          <NavLink href="/" aria-label="Home">
             <LogoWithMark />
           </NavLink>
-        </Box>
-        <Box>
-          <Stack spacing={4}>
-            <Box>
-              <NavButtonLink href="/about">About</NavButtonLink>
-            </Box>
-          </Stack>
-        </Box>
+        </Flex>
+        <Flex alignItems="center">
+          <NavButtonLink href="/about">About</NavButtonLink>
+        </Flex>
       </Flex>
-    </Container>
-  </Box>
-);
-
-interface LayoutHeaderProps {
-  children: ReactNode;
-}
-
-export const LayoutHeader = ({ children }: LayoutHeaderProps) => (
-  <Box as="header" py={8} backgroundColor="gray.50">
-    <Container mx="auto" px={{ base: 4, sm: 6, lg: 8 }} maxWidth="2xl">
-      {children}
     </Container>
   </Box>
 );
@@ -124,8 +98,28 @@ interface LayoutContentProps {
 }
 
 export const LayoutContent = ({ children }: LayoutContentProps) => (
-  <Box as="main" pt={8} pb={16}>
-    <Container mx="auto" px={{ base: 0, sm: 6, lg: 8 }} maxWidth="2xl">
+  <Box py={8}>{children}</Box>
+);
+
+interface LayoutHeaderProps {
+  children: ReactNode;
+}
+
+export const LayoutHeader = ({ children }: LayoutHeaderProps) => (
+  <Box as="header">
+    <Container maxWidth="2xl" px={{ base: 4, sm: 6, lg: 8 }}>
+      {children}
+    </Container>
+  </Box>
+);
+
+interface LayoutMainProps {
+  children: ReactNode;
+}
+
+export const LayoutMain = ({ children }: LayoutMainProps) => (
+  <Box as="main" mt={10}>
+    <Container maxWidth="2xl" px={{ base: 0, sm: 6, lg: 8 }}>
       {children}
     </Container>
   </Box>

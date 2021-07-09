@@ -1,4 +1,3 @@
-import { Box } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import {
   RoomHeader,
@@ -9,6 +8,7 @@ import {
   LayoutNav,
   LayoutHeader,
   LayoutContent,
+  LayoutMain,
 } from "client/components";
 import { useRoomQuery } from "client/utils/hooks";
 
@@ -25,31 +25,31 @@ const Room = () => {
 
   return (
     <Layout title={title}>
-      <Box position="relative" minHeight="100vh" backgroundColor="white">
-        <LayoutNav />
+      <LayoutNav />
+      <LayoutContent>
         {roomResult.error ? (
-          <LayoutContent>
+          <LayoutMain>
             <Result
               title="Uh oh! Something went wrong :("
               description="A room with this ID doesn't exist, or an error occurred. Please try again."
               status="error"
             />
-          </LayoutContent>
+          </LayoutMain>
         ) : room === undefined ? (
-          <LayoutContent>
+          <LayoutMain>
             <Spinner tip="Loading room" />
-          </LayoutContent>
+          </LayoutMain>
         ) : (
           <>
             <LayoutHeader>
               <RoomHeader room={room} />
             </LayoutHeader>
-            <LayoutContent>
+            <LayoutMain>
               <RoomMessages roomId={room.id} messages={room.messages} />
-            </LayoutContent>
+            </LayoutMain>
           </>
         )}
-      </Box>
+      </LayoutContent>
     </Layout>
   );
 };

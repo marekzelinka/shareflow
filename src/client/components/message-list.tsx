@@ -1,4 +1,13 @@
-import { Box, Flex, List, ListItem, Link, Icon } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  List,
+  ListItem,
+  Link,
+  Icon,
+  Stack,
+  Text,
+} from "@chakra-ui/react";
 import { CalendarIcon } from "@heroicons/react/solid";
 import { formatDate } from "client/utils/helpers";
 import { Message } from "client/utils/types";
@@ -16,9 +25,8 @@ const MessageItem = ({ message }: MessageItemProps) => (
     {message.type === "link" ? (
       <Link
         display="block"
-        fontSize="sm"
         fontWeight="medium"
-        textColor="purple.600"
+        textColor="purple.500"
         isTruncated
         isExternal
         href={message.url}
@@ -28,17 +36,23 @@ const MessageItem = ({ message }: MessageItemProps) => (
     ) : (
       <CodeBlock language={message.language} codeString={message.code_string} />
     )}
-    <Flex mt={2} alignItems="center" fontSize="sm" textColor="gray.500">
-      <Icon
-        as={CalendarIcon}
-        mr={1.5}
-        width={5}
-        height={5}
-        flexShrink={0}
-        textColor="gray.400"
-        aria-hidden="true"
-      />
-      {formatDate(message.inserted_at)}
+    <Flex
+      mt={{ base: 1, sm: 0 }}
+      flexDirection={{ base: "column", sm: "row" }}
+      flexWrap={{ sm: "wrap" }}
+    >
+      <Stack mt={2} direction="row" spacing={1.5} alignItems="center">
+        <Icon
+          as={CalendarIcon}
+          textColor="gray.400"
+          width={5}
+          height={5}
+          aria-hidden="true"
+        />
+        <Text as="span" fontSize="sm" textColor="gray.500">
+          {formatDate(message.inserted_at)}
+        </Text>
+      </Stack>
     </Flex>
   </MotionBox>
 );
@@ -54,7 +68,6 @@ export const MessageList = ({ messages }: MessageListProps) => (
         key={message.id}
         _notFirst={{
           borderTopWidth: 1,
-          borderTopColor: "gray.200",
         }}
       >
         <MessageItem message={message} />

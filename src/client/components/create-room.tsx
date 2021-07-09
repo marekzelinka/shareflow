@@ -93,16 +93,8 @@ export const CreateRoom = () => {
         <form onSubmit={handleSubmit}>
           <Stack spacing={6}>
             <FormControl isInvalid={errors.slug !== undefined && touched.slug}>
-              <FormLabel fontSize="sm" fontWeight="medium" textColor="gray.700">
-                Room ID
-              </FormLabel>
+              <FormLabel>Room ID</FormLabel>
               <Input
-                _focus={{
-                  outline: "none",
-                  borderColor: "purple.400",
-                  ring: "1px",
-                  ringColor: "purple.400",
-                }}
                 name="slug"
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -124,16 +116,8 @@ export const CreateRoom = () => {
             <FormControl
               isInvalid={errors.title !== undefined && touched.title}
             >
-              <FormLabel fontSize="sm" fontWeight="medium" textColor="gray.700">
-                Title
-              </FormLabel>
+              <FormLabel>Title</FormLabel>
               <Input
-                _focus={{
-                  outline: "none",
-                  borderColor: "purple.400",
-                  ring: "1px",
-                  ringColor: "purple.400",
-                }}
                 name="title"
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -153,16 +137,8 @@ export const CreateRoom = () => {
               </FormErrorMessage>
             </FormControl>
             <FormControl isInvalid={errors.host !== undefined && touched.host}>
-              <FormLabel fontSize="sm" fontWeight="medium" textColor="gray.700">
-                Host
-              </FormLabel>
+              <FormLabel>Host</FormLabel>
               <Input
-                _focus={{
-                  outline: "none",
-                  borderColor: "purple.400",
-                  ring: "1px",
-                  ringColor: "purple.400",
-                }}
                 name="host"
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -186,21 +162,12 @@ export const CreateRoom = () => {
                 type="submit"
                 colorScheme="purple"
                 isFullWidth
-                fontSize="sm"
-                fontWeight="medium"
-                _focus={{
-                  outline: "none",
-                  ring: "2px",
-                  ringOffset: "2px",
-                  ringColor: "purple.400",
-                }}
                 leftIcon={
                   <Icon
                     as={PlusCircleIcon}
                     width={5}
                     height={5}
                     textColor="purple.200"
-                    aria-hidden="true"
                   />
                 }
                 isLoading={isSubmitting}

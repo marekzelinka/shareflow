@@ -23,12 +23,11 @@ export const RoomMessages = ({ roomId, messages }: RoomMessagesProps) => {
   const snippets = messages.filter((message) => message.type === "snippet");
 
   return (
-    <Tabs as="section">
+    <Tabs as="section" colorScheme="purple" size="sm">
       <Box
         as="header"
         position="relative"
         borderBottomWidth={1}
-        borderBottomColor="gray.200"
         px={{ base: 4, sm: 0 }}
       >
         <Box
@@ -36,32 +35,28 @@ export const RoomMessages = ({ roomId, messages }: RoomMessagesProps) => {
           alignItems={{ md: "center" }}
           justifyContent={{ md: "space-between" }}
         >
-          <Heading as="h2" size="md" fontWeight="medium" textColor="gray.900">
+          <Heading as="h2" size="md" fontWeight="medium">
             Previous messages
           </Heading>
           <Stack
-            mt={{ base: 3, md: 0 }}
             spacing={3}
+            mt={{ base: 3, md: 0 }}
             position={{ md: "absolute" }}
             top={{ md: 3 }}
             right={{ md: 0 }}
           >
-            <Box>
-              <AddMessage roomId={roomId} />
-            </Box>
+            <AddMessage roomId={roomId} />
           </Stack>
         </Box>
         <Box mt={4}>
-          <TabList mb="-1px" borderBottomWidth={0}>
+          <TabList borderBottomWidth={0}>
             <Tab
               mb={0}
               pt={0}
               pb={4}
               px={1}
-              fontSize="sm"
               fontWeight="medium"
               textColor="gray.500"
-              whiteSpace="nowrap"
               borderBottomWidth={2}
               borderBottomColor="transparent"
               _hover={{
@@ -90,10 +85,8 @@ export const RoomMessages = ({ roomId, messages }: RoomMessagesProps) => {
               pt={0}
               pb={4}
               px={1}
-              fontSize="sm"
               fontWeight="medium"
               textColor="gray.500"
-              whiteSpace="nowrap"
               borderBottomWidth={2}
               borderBottomColor="transparent"
               _hover={{
@@ -102,9 +95,6 @@ export const RoomMessages = ({ roomId, messages }: RoomMessagesProps) => {
                 _selected: {
                   textColor: "purple.500",
                   borderBottomColor: "purple.400",
-                },
-                _disabled: {
-                  textColor: "gray.500",
                 },
               }}
               _selected={{
@@ -126,10 +116,8 @@ export const RoomMessages = ({ roomId, messages }: RoomMessagesProps) => {
               pt={0}
               pb={4}
               px={1}
-              fontSize="sm"
               fontWeight="medium"
               textColor="gray.500"
-              whiteSpace="nowrap"
               borderBottomWidth={2}
               borderBottomColor="transparent"
               _hover={{
@@ -138,9 +126,6 @@ export const RoomMessages = ({ roomId, messages }: RoomMessagesProps) => {
                 _selected: {
                   textColor: "purple.500",
                   borderBottomColor: "purple.400",
-                },
-                _disabled: {
-                  textColor: "gray.500",
                 },
               }}
               _selected={{

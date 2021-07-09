@@ -86,16 +86,8 @@ export const JoinRoom = () => {
         <form onSubmit={handleSubmit}>
           <Stack spacing={6}>
             <FormControl isInvalid={errors.slug !== undefined && touched.slug}>
-              <FormLabel fontSize="sm" fontWeight="medium" textColor="gray.700">
-                Room ID
-              </FormLabel>
+              <FormLabel>Room ID</FormLabel>
               <Input
-                _focus={{
-                  outline: "none",
-                  borderColor: "purple.400",
-                  ring: "1px",
-                  ringColor: "purple.400",
-                }}
                 name="slug"
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -119,21 +111,12 @@ export const JoinRoom = () => {
                 type="submit"
                 colorScheme="purple"
                 isFullWidth
-                fontWeight="medium"
-                fontSize="sm"
-                _focus={{
-                  outline: "none",
-                  ring: "2px",
-                  ringOffset: "2px",
-                  ringColor: "purple.400",
-                }}
                 leftIcon={
                   <Icon
                     as={PlusCircleIcon}
                     width={5}
                     height={5}
                     textColor="purple.200"
-                    aria-hidden="true"
                   />
                 }
                 isLoading={isSubmitting}

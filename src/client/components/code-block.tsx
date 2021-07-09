@@ -15,7 +15,7 @@ import typescript from "react-syntax-highlighter/dist/cjs/languages/prism/typesc
 import tsx from "react-syntax-highlighter/dist/cjs/languages/prism/tsx";
 import java from "react-syntax-highlighter/dist/cjs/languages/prism/java";
 import css from "react-syntax-highlighter/dist/cjs/languages/prism/css";
-import style from "react-syntax-highlighter/dist/cjs/styles/prism/vsc-dark-plus";
+import style from "react-syntax-highlighter/dist/cjs/styles/prism/vs";
 
 SyntaxHighlighter.registerLanguage("javascript", javascript);
 SyntaxHighlighter.registerLanguage("jsx", jsx);
@@ -35,23 +35,20 @@ const CopyButton = ({ text }: CopyButtonProps) => {
 
   return (
     <IconButton
+      colorScheme="blackAlpha"
+      variant="ghost"
       size="xs"
-      variant="unstyled"
-      aria-label={hasCopied ? "Copied" : "Copy"}
+      rounded="md"
       icon={
         <Icon
           as={hasCopied ? ClipboardCheckIcon : ClipboardIcon}
           width={5}
           height={5}
           flexShrink={0}
-          textColor="currentcolor"
           aria-hidden="true"
         />
       }
-      textColor="gray.400"
-      _hover={{
-        textColor: "gray.200",
-      }}
+      aria-label={hasCopied ? "Copied" : "Copy"}
       onClick={onCopy}
     />
   );
@@ -74,6 +71,7 @@ export const CodeBlock = ({ language, codeString }: CodeBlockProps) => {
           marginTop: theme.space[0],
           marginBottom: theme.space[0],
           borderRadius: theme.radii.md,
+          padding: `${theme.space[3]} ${theme.space[4]}`,
         }}
       >
         {codeString}

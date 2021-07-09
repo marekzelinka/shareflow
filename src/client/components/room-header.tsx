@@ -6,6 +6,7 @@ import {
   Heading,
   Icon,
   useToast,
+  Text,
 } from "@chakra-ui/react";
 import { CalendarIcon, UserIcon, ShareIcon } from "@heroicons/react/solid";
 import { useRouter } from "next/router";
@@ -45,29 +46,13 @@ const ShareButton = ({ shareData, children }: ShareButtonProps) => {
   return (
     <Button
       variant="outline"
-      fontWeight="medium"
-      fontSize="sm"
       backgroundColor="white"
-      _hover={{ backgroundColor: "gray.50" }}
-      _focus={{
-        outline: "none",
-        ring: "2px",
-        ringOffset: "2px",
-        ringOffsetColor: "gray.50",
-        ringColor: "purple.400",
-      }}
       onClick={shareUrl}
       isLoading={isSharingUrl}
+      leftIcon={
+        <Icon as={ShareIcon} width={5} height={5} textColor="gray.500" />
+      }
     >
-      <Icon
-        as={ShareIcon}
-        ml={-1}
-        mr={2}
-        width={5}
-        height={5}
-        textColor="gray.500"
-        aria-hidden="true"
-      />
       {children}
     </Button>
   );
@@ -87,13 +72,7 @@ export const RoomHeader = ({ room }: RoomHeaderProps) => {
       justifyContent={{ md: "space-between" }}
     >
       <Box flex={1} minWidth={0}>
-        <Heading
-          as="h1"
-          size="md"
-          fontWeight="bold"
-          textColor="gray.900"
-          isTruncated
-        >
+        <Heading as="h1" size="lg" isTruncated>
           {room.title}
         </Heading>
         <Flex
@@ -101,50 +80,48 @@ export const RoomHeader = ({ room }: RoomHeaderProps) => {
           flexDirection={{ base: "column", sm: "row" }}
           flexWrap={{ sm: "wrap" }}
         >
-          <Flex mt={2} alignItems="center" fontSize="sm" textColor="gray.500">
+          <Stack mt={2} direction="row" spacing={1.5} alignItems="center">
             <Icon
               as={CalendarIcon}
-              mr={1.5}
+              textColor="gray.400"
               width={5}
               height={5}
-              flexShrink={0}
-              textColor="gray.400"
               aria-hidden="true"
             />
-            {formatDate(room.inserted_at)}
-          </Flex>
-          <Flex
+            <Text as="span" fontSize="sm" textColor="gray.500">
+              {formatDate(room.inserted_at)}
+            </Text>
+          </Stack>
+          <Stack
             mt={2}
-            ml={{ sm: 8 }}
+            ml={{ sm: 6 }}
+            direction="row"
+            spacing={1.5}
             alignItems="center"
-            fontSize="sm"
-            textColor="gray.500"
           >
             <Icon
               as={UserIcon}
-              mr={1.5}
+              textColor="gray.400"
               width={5}
               height={5}
-              flexShrink={0}
-              textColor="gray.400"
               aria-hidden="true"
             />
-            {room.host}
-          </Flex>
+            <Text as="span" fontSize="sm" textColor="gray.500">
+              {room.host}
+            </Text>
+          </Stack>
         </Flex>
       </Box>
-      <Stack mt={{ base: 5, md: 0 }} ml={{ md: 4 }} spacing={3} direction="row">
-        <Box>
-          <ShareButton
-            shareData={{
-              title: `${room.title}, hosted by ${room.host}`,
-              text: "Collaborate with other attendees!",
-              url: router.asPath,
-            }}
-          >
-            Share URL
-          </ShareButton>
-        </Box>
+      <Stack mt={{ base: 4, md: 0 }} ml={{ md: 4 }} direction="row" spacing={3}>
+        <ShareButton
+          shareData={{
+            title: `${room.title}, hosted by ${room.host}`,
+            text: "Collaborate with other attendees!",
+            url: router.asPath,
+          }}
+        >
+          Share URL
+        </ShareButton>
       </Stack>
     </Box>
   );

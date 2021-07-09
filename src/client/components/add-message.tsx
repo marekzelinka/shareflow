@@ -20,6 +20,7 @@ import {
   Textarea,
   FormErrorMessage,
   useToast,
+  ButtonGroup,
 } from "@chakra-ui/react";
 import { ExclamationCircleIcon, PlusIcon } from "@heroicons/react/solid";
 import { Formik, FormikErrors, FormikHelpers } from "formik";
@@ -96,37 +97,16 @@ export const AddMessage = ({ roomId }: AddMessageProps) => {
       <Button
         onClick={onOpen}
         colorScheme="purple"
-        fontWeight="medium"
-        fontSize="sm"
-        _focus={{
-          outline: "none",
-          ring: "2px",
-          ringOffset: "2px",
-          ringColor: "purple.400",
-        }}
         leftIcon={
-          <Icon
-            as={PlusIcon}
-            width={5}
-            height={5}
-            textColor="purple.200"
-            aria-hidden="true"
-          />
+          <Icon as={PlusIcon} width={5} height={5} textColor="purple.200" />
         }
       >
         Add message
       </Button>
-      <Modal
-        isOpen={isOpen}
-        onClose={onClose}
-        motionPreset="slideInBottom"
-        isCentered
-      >
+      <Modal isOpen={isOpen} onClose={onClose} motionPreset="slideInBottom">
         <ModalOverlay />
         <ModalContent overflow="hidden">
-          <ModalHeader fontSize="lg" fontWeight="medium" textColor="gray.900">
-            New Message
-          </ModalHeader>
+          <ModalHeader>New Message</ModalHeader>
           <ModalCloseButton />
           <Formik
             initialValues={initialValues}
@@ -146,17 +126,11 @@ export const AddMessage = ({ roomId }: AddMessageProps) => {
               resetForm,
             }) => (
               <>
-                <ModalBody minHeight="311px" pb={6}>
+                <ModalBody minHeight="311px">
                   <form id="new-message-form" onSubmit={handleSubmit}>
                     <Stack spacing={6}>
                       <FormControl>
-                        <FormLabel
-                          fontSize="sm"
-                          fontWeight="medium"
-                          textColor="gray.700"
-                        >
-                          Type
-                        </FormLabel>
+                        <FormLabel>Type</FormLabel>
                         <RadioGroup
                           colorScheme="purple"
                           name="type"
@@ -165,12 +139,6 @@ export const AddMessage = ({ roomId }: AddMessageProps) => {
                           <Stack direction="row" spacing={3}>
                             <Radio
                               value="link"
-                              _focus={{
-                                outline: "none",
-                                ring: "2px",
-                                ringOffset: "2px",
-                                ringColor: "purple.400",
-                              }}
                               name="type"
                               onChange={(e) => {
                                 resetForm();
@@ -182,12 +150,6 @@ export const AddMessage = ({ roomId }: AddMessageProps) => {
                             </Radio>
                             <Radio
                               value="snippet"
-                              _focus={{
-                                outline: "none",
-                                ring: "2px",
-                                ringOffset: "2px",
-                                ringColor: "purple.400",
-                              }}
                               name="type"
                               onChange={(e) => {
                                 resetForm();
@@ -204,20 +166,8 @@ export const AddMessage = ({ roomId }: AddMessageProps) => {
                         <FormControl
                           isInvalid={errors.url !== undefined && touched.url}
                         >
-                          <FormLabel
-                            fontSize="sm"
-                            fontWeight="medium"
-                            textColor="gray.700"
-                          >
-                            URL
-                          </FormLabel>
+                          <FormLabel>URL</FormLabel>
                           <Input
-                            _focus={{
-                              outline: "none",
-                              borderColor: "purple.400",
-                              ring: "1px",
-                              ringColor: "purple.400",
-                            }}
                             name="url"
                             onChange={handleChange}
                             onBlur={handleBlur}
@@ -239,20 +189,8 @@ export const AddMessage = ({ roomId }: AddMessageProps) => {
                       ) : (
                         <>
                           <FormControl>
-                            <FormLabel
-                              fontSize="sm"
-                              fontWeight="medium"
-                              textColor="gray.700"
-                            >
-                              Language
-                            </FormLabel>
+                            <FormLabel>Language</FormLabel>
                             <Select
-                              _focus={{
-                                outline: "none",
-                                borderColor: "purple.400",
-                                ring: "1px",
-                                ringColor: "purple.400",
-                              }}
                               name="language"
                               onChange={handleChange}
                               onBlur={handleBlur}
@@ -274,21 +212,9 @@ export const AddMessage = ({ roomId }: AddMessageProps) => {
                               touched.code_string
                             }
                           >
-                            <FormLabel
-                              fontSize="sm"
-                              fontWeight="medium"
-                              textColor="gray.700"
-                            >
-                              Code Snippet
-                            </FormLabel>
+                            <FormLabel>Code Snippet</FormLabel>
                             <Textarea
                               display="block"
-                              _focus={{
-                                outline: "none",
-                                borderColor: "purple.400",
-                                ring: "1px",
-                                ringColor: "purple.400",
-                              }}
                               name="code_string"
                               onChange={handleChange}
                               onBlur={handleBlur}
@@ -312,44 +238,21 @@ export const AddMessage = ({ roomId }: AddMessageProps) => {
                     </Stack>
                   </form>
                 </ModalBody>
-                <ModalFooter
-                  borderTopWidth={1}
-                  borderTopColor="gray.200"
-                  backgroundColor="gray.50"
-                >
-                  <Stack direction="row" spacing={3}>
-                    <Button
-                      onClick={onClose}
-                      variant="outline"
-                      fontWeight="medium"
-                      fontSize="sm"
-                      _focus={{
-                        outline: "none",
-                        ring: "2px",
-                        ringOffset: "2px",
-                        ringColor: "purple.400",
-                      }}
-                    >
-                      Close
+                <ModalFooter>
+                  <ButtonGroup size="sm" spacing={4}>
+                    <Button variant="outline" onClick={onClose}>
+                      Cancel
                     </Button>
                     <Button
                       type="submit"
                       form="new-message-form"
                       colorScheme="purple"
-                      fontWeight="medium"
-                      fontSize="sm"
-                      _focus={{
-                        outline: "none",
-                        ring: "2px",
-                        ringOffset: "2px",
-                        ringColor: "purple.400",
-                      }}
                       isLoading={isSubmitting}
                       loadingText="Adding message. Please wait..."
                     >
                       Save
                     </Button>
-                  </Stack>
+                  </ButtonGroup>
                 </ModalFooter>
               </>
             )}
