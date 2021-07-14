@@ -10,18 +10,19 @@ export const Spinner = ({ tip = "Loading" }: SpinnerProps) => {
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      setContent((c) => {
-        if (c === tip + "...") {
+      setContent((content) => {
+        if (content === tip + "...") {
           return tip;
         }
 
-        return c + ".";
+        return content + ".";
       });
     }, 300);
 
     const cleanup = () => {
       clearInterval(intervalId);
     };
+
     return cleanup;
   }, [tip]);
 

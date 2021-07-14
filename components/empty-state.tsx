@@ -1,7 +1,7 @@
 import { Box, Heading, Icon, Text } from "@chakra-ui/react";
 import { ReactNode } from "react";
 
-const emptyIcon = (
+const defaultIcon = (
   <Icon
     viewBox="0 0 184 152"
     height={28}
@@ -48,15 +48,19 @@ const emptyIcon = (
   </Icon>
 );
 
-interface EmptyProps {
+interface EmptyStateProps {
   title: string;
   description: string;
   children?: ReactNode;
 }
 
-export const Empty = ({ title, description, children }: EmptyProps) => (
+export const EmptyState = ({
+  title,
+  description,
+  children,
+}: EmptyStateProps) => (
   <Box mt={6} mb={5} textAlign="center">
-    {emptyIcon}
+    {defaultIcon}
     <Heading as="h3" mt={6} size="md">
       {title}
     </Heading>

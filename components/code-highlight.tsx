@@ -35,15 +35,14 @@ const CopyButton = ({ text }: CopyButtonProps) => {
 
   return (
     <IconButton
-      colorScheme="blackAlpha"
+      colorScheme="purple"
       variant="ghost"
-      size="xs"
-      rounded="md"
+      size="sm"
       icon={
         <Icon
           as={hasCopied ? ClipboardCheckIcon : ClipboardIcon}
-          width={4}
-          height={4}
+          width={5}
+          height={5}
           flexShrink={0}
           aria-hidden="true"
         />
@@ -54,13 +53,12 @@ const CopyButton = ({ text }: CopyButtonProps) => {
   );
 };
 
-export const CodeBlock = ({
-  language,
-  codeString,
-}: {
+interface CodeHighlightProps {
   language: string;
   codeString: string;
-}) => {
+}
+
+export const CodeHighlight = ({ language, codeString }: CodeHighlightProps) => {
   const theme = useTheme();
 
   return (
@@ -72,7 +70,7 @@ export const CodeBlock = ({
           marginTop: theme.space[0],
           marginBottom: theme.space[0],
           borderRadius: theme.radii.md,
-          padding: `${theme.space[3]} ${theme.space[4]}`,
+          padding: `${theme.space[4]} ${theme.space[4]}`,
         }}
       >
         {codeString}

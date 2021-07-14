@@ -20,13 +20,12 @@ import {
   Textarea,
   FormErrorMessage,
   useToast,
-  ButtonGroup,
 } from "@chakra-ui/react";
 import { ExclamationCircleIcon, PlusIcon } from "@heroicons/react/solid";
 import { Formik, FormikErrors, FormikHelpers } from "formik";
-import { isValidUrl } from "client/utils/helpers";
-import { useCreateMessageMutation } from "client/utils/hooks";
-import { NewMessage } from "client/utils/types";
+import { useCreateMessageMutation } from "../hooks/use-create-message-mutation";
+import { isValidUrl } from "../utils/is-valid-url";
+import { NewMessage } from "../types";
 
 type Values = NewMessage;
 
@@ -56,11 +55,11 @@ const validate = (values: Values) => {
   return errors;
 };
 
-interface AddMessageProps {
+interface AddRoomMessageProps {
   roomId: string;
 }
 
-export const AddMessage = ({ roomId }: AddMessageProps) => {
+export const AddRoomMessage = ({ roomId }: AddRoomMessageProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
   const createMessageResult = useCreateMessageMutation();
@@ -125,7 +124,7 @@ export const AddMessage = ({ roomId }: AddMessageProps) => {
             }) => (
               <>
                 <ModalBody minHeight="311px">
-                  <form id="new-message-form" onSubmit={handleSubmit}>
+                  <form id="new-room-message-form" onSubmit={handleSubmit}>
                     <Stack spacing={6}>
                       <FormControl>
                         <FormLabel>Type</FormLabel>
@@ -237,20 +236,20 @@ export const AddMessage = ({ roomId }: AddMessageProps) => {
                   </form>
                 </ModalBody>
                 <ModalFooter>
-                  <ButtonGroup size="sm" spacing={4}>
+                  <Stack spacing={4} direction="row">
                     <Button variant="outline" onClick={onClose}>
                       Cancel
                     </Button>
                     <Button
                       type="submit"
-                      form="new-message-form"
+                      form="new-room-message-form"
                       colorScheme="purple"
                       isLoading={isSubmitting}
                       loadingText="Adding message. Please wait..."
                     >
                       Save
                     </Button>
-                  </ButtonGroup>
+                  </Stack>
                 </ModalFooter>
               </>
             )}

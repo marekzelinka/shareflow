@@ -3,8 +3,6 @@ import { useEffect } from "react";
 import { supabase } from "../lib/supabase";
 import { Message, Room } from "../types";
 
-type Data = Room;
-
 const getRoomById = async (slug: Room["slug"]) => {
   const selectResult = await supabase
     .from<Room>("rooms")
@@ -36,7 +34,7 @@ const getRoomById = async (slug: Room["slug"]) => {
 
 export const useRoomQuery = (slug: Room["slug"]) => {
   const queryClient = useQueryClient();
-  const roomResult = useQuery<Data, Error>(
+  const roomResult = useQuery<Room, Error>(
     ["rooms", slug],
     () => getRoomById(slug),
     {
@@ -68,6 +66,7 @@ export const useRoomQuery = (slug: Room["slug"]) => {
       const cleanup = () => {
         supabase.removeSubscription(subscription);
       };
+
       return cleanup;
     }
   }, [queryClient, room?.id, slug]);

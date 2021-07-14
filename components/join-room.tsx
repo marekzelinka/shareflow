@@ -10,7 +10,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { Formik, FormikErrors, FormikHelpers } from "formik";
-import { ExclamationCircleIcon, PlusCircleIcon } from "@heroicons/react/solid";
+import { ExclamationCircleIcon, PlusIcon } from "@heroicons/react/solid";
 import { useRouter } from "next/router";
 import { useJoinRoomMutation } from "../hooks/use-join-room-mutation";
 import { Room } from "../types";
@@ -111,7 +111,7 @@ export const JoinRoom = () => {
                 type="submit"
                 colorScheme="purple"
                 isFullWidth
-                leftIcon={<Icon as={PlusCircleIcon} width={5} height={5} />}
+                leftIcon={<Icon as={PlusIcon} width={5} height={5} />}
                 isLoading={isSubmitting}
                 loadingText="Joining room. Please wait..."
               >

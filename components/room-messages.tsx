@@ -7,11 +7,90 @@ import {
   Tab,
   TabPanel,
   Stack,
+  Flex,
+  List,
+  ListItem,
+  Link,
+  Icon,
+  Text,
 } from "@chakra-ui/react";
+import { CalendarIcon } from "@heroicons/react/solid";
+import { motion } from "framer-motion";
+import { formatDate } from "../utils/format-date";
 import { Message } from "../types";
-import { AddMessage } from "./add-message";
-import { Empty } from "./empty";
-import { MessageList } from "./message-list";
+import { AddRoomMessage } from "./add-room-message";
+import { CodeHighlight } from "./code-highlight";
+import { EmptyState } from "./empty-state";
+
+const MotionBox = motion(Box);
+
+interface MessageItemProps {
+  message: Message;
+}
+
+const MessageItem = ({ message }: MessageItemProps) => (
+  <MotionBox py={{ base: 5, sm: 6 }} px={{ base: 4, sm: 0 }} layout>
+    {message.type === "link" ? (
+      <Link
+        display="block"
+        fontWeight="medium"
+        textColor="purple.500"
+        isTruncated
+        isExternal
+        href={message.url}
+      >
+        {message.url}
+      </Link>
+    ) : (
+      <CodeHighlight
+        language={message.language}
+        codeString={message.code_string}
+      />
+    )}
+    <Flex
+      mt={{ base: 1, sm: 0 }}
+      flexDirection={{ base: "column", sm: "row" }}
+      flexWrap={{ sm: "wrap" }}
+    >
+      <Stack
+        mt={2}
+        direction="row"
+        spacing={1.5}
+        alignItems="center"
+        fontSize="sm"
+        textColor="gray.500"
+      >
+        <Icon
+          as={CalendarIcon}
+          textColor="gray.400"
+          width={5}
+          height={5}
+          aria-hidden="true"
+        />
+        <Text as="span">{formatDate(message.inserted_at)}</Text>
+      </Stack>
+    </Flex>
+  </MotionBox>
+);
+
+interface MessageListProps {
+  messages: Message[];
+}
+
+export const MessageList = ({ messages }: MessageListProps) => (
+  <List as="ol">
+    {messages.map((message) => (
+      <ListItem
+        key={message.id}
+        _notFirst={{
+          borderTopWidth: 1,
+        }}
+      >
+        <MessageItem message={message} />
+      </ListItem>
+    ))}
+  </List>
+);
 
 interface RoomMessagesProps {
   roomId: string;
@@ -45,7 +124,7 @@ export const RoomMessages = ({ roomId, messages }: RoomMessagesProps) => {
             top={{ md: 3 }}
             right={{ md: 0 }}
           >
-            <AddMessage roomId={roomId} />
+            <AddRoomMessage roomId={roomId} />
           </Stack>
         </Box>
         <Box mt={4}>
@@ -149,12 +228,12 @@ export const RoomMessages = ({ roomId, messages }: RoomMessagesProps) => {
           {messages.length > 0 ? (
             <MessageList messages={messages} />
           ) : (
-            <Empty
+            <EmptyState
               title="No messages found"
               description="Get started by adding a new message."
             >
-              <AddMessage roomId={roomId} />
-            </Empty>
+              <AddRoomMessage roomId={roomId} />
+            </EmptyState>
           )}
         </TabPanel>
         <TabPanel p={0}>

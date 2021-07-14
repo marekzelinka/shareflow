@@ -4,15 +4,13 @@ import { NewRoom, Room } from "../types";
 
 type Data = Room;
 
-type SelectData = Pick<Room, "slug">;
-
 interface Variables {
   values: NewRoom;
 }
 
 const createRoom = async ({ values }: Variables) => {
   const selectResult = await supabase
-    .from<SelectData>("rooms")
+    .from<Pick<Room, "slug">>("rooms")
     .select("slug")
     .eq("slug", values.slug.trim())
     .single();

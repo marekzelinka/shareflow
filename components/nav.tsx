@@ -57,7 +57,7 @@ const NavButtonLink = ({ href, ...props }: NavButtonLinkProps) => {
 
 export const Nav = () => (
   <Box as="nav" backgroundColor="white" borderBottomWidth={1}>
-    <Container maxWidth="2xl" px={{ base: 4, sm: 6, lg: 8 }}>
+    <Container maxWidth="3xl" px={{ base: 4, sm: 6, lg: 8 }}>
       <Flex justifyContent="space-between" height={16}>
         <Flex flexShrink={0} alignItems="center">
           <NavLink href="/" aria-label="Home">

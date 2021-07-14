@@ -10,7 +10,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { Formik, FormikErrors, FormikHelpers } from "formik";
-import { ExclamationCircleIcon, PlusCircleIcon } from "@heroicons/react/solid";
+import { ExclamationCircleIcon, PlusIcon } from "@heroicons/react/solid";
 import { useRouter } from "next/router";
 import { useCreateRoomMutation } from "../hooks/use-create-room-mutation";
 import { getRandomSlug } from "../utils/get-random-slug";
@@ -163,7 +163,7 @@ export const CreateRoom = () => {
                 type="submit"
                 colorScheme="purple"
                 isFullWidth
-                leftIcon={<Icon as={PlusCircleIcon} width={5} height={5} />}
+                leftIcon={<Icon as={PlusIcon} width={5} height={5} />}
                 isLoading={isSubmitting}
                 loadingText="Creating room. Please wait..."
               >
