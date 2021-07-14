@@ -97,8 +97,8 @@ export const JoinRoom = () => {
                 <Icon
                   as={ExclamationCircleIcon}
                   mr={1.5}
-                  width={5}
                   height={5}
+                  width={5}
                   flexShrink={0}
                   textColor="red.400"
                   aria-hidden="true"
@@ -111,7 +111,7 @@ export const JoinRoom = () => {
                 type="submit"
                 colorScheme="purple"
                 isFullWidth
-                leftIcon={<Icon as={PlusIcon} width={5} height={5} />}
+                leftIcon={<Icon as={PlusIcon} height={5} width={5} />}
                 isLoading={isSubmitting}
                 loadingText="Joining room. Please wait..."
               >

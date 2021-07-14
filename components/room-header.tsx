@@ -49,7 +49,7 @@ const ShareButton = ({ shareData, children }: ShareButtonProps) => {
       backgroundColor="white"
       onClick={shareUrl}
       isLoading={isSharingUrl}
-      leftIcon={<Icon as={ShareIcon} width={5} height={5} />}
+      leftIcon={<Icon as={ShareIcon} height={5} width={5} />}
     >
       {children}
     </Button>
@@ -82,8 +82,8 @@ export const RoomHeader = ({ room }: RoomHeaderProps) => {
             <Icon
               as={CalendarIcon}
               textColor="gray.400"
-              width={5}
               height={5}
+              width={5}
               aria-hidden="true"
             />
             <Text as="span" fontSize="sm" textColor="gray.500">
@@ -100,8 +100,8 @@ export const RoomHeader = ({ room }: RoomHeaderProps) => {
             <Icon
               as={UserIcon}
               textColor="gray.400"
-              width={5}
               height={5}
+              width={5}
               aria-hidden="true"
             />
             <Text as="span" fontSize="sm" textColor="gray.500">

@@ -96,7 +96,7 @@ export const AddRoomMessage = ({ roomId }: AddRoomMessageProps) => {
       <Button
         onClick={onOpen}
         colorScheme="purple"
-        leftIcon={<Icon as={PlusIcon} width={5} height={5} />}
+        leftIcon={<Icon as={PlusIcon} height={5} width={5} />}
       >
         Add message
       </Button>
@@ -174,8 +174,8 @@ export const AddRoomMessage = ({ roomId }: AddRoomMessageProps) => {
                             <Icon
                               as={ExclamationCircleIcon}
                               mr={1.5}
-                              width={5}
                               height={5}
+                              width={5}
                               flexShrink={0}
                               textColor="red.400"
                               aria-hidden="true"
@@ -221,8 +221,8 @@ export const AddRoomMessage = ({ roomId }: AddRoomMessageProps) => {
                               <Icon
                                 as={ExclamationCircleIcon}
                                 mr={1.5}
-                                width={5}
                                 height={5}
+                                width={5}
                                 flexShrink={0}
                                 textColor="red.400"
                                 aria-hidden="true"
