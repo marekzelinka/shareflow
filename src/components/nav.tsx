@@ -6,7 +6,6 @@ import {
   Link,
   LinkProps,
   ButtonProps,
-  Stack,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
@@ -48,7 +47,7 @@ const NavButtonLink = ({ href, ...props }: NavButtonLinkProps) => {
         _active={undefined}
         aria-current={isCurrent ? "page" : undefined}
         _activeLink={{
-          backgroundColor: "gray.50",
+          backgroundColor: "gray.100",
         }}
         {...props}
       />
@@ -57,7 +56,7 @@ const NavButtonLink = ({ href, ...props }: NavButtonLinkProps) => {
 };
 
 export const Nav = () => (
-  <Box as="nav" backgroundColor="white" shadow="base">
+  <Box as="nav" backgroundColor="gray.50" borderBottomWidth={1}>
     <Container maxWidth="3xl" px={{ base: 4, sm: 6, lg: 8 }}>
       <Flex justifyContent="space-between" height={16}>
         <Flex flexShrink={0} alignItems="center">

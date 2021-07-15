@@ -15,7 +15,7 @@ import typescript from "react-syntax-highlighter/dist/cjs/languages/prism/typesc
 import tsx from "react-syntax-highlighter/dist/cjs/languages/prism/tsx";
 import java from "react-syntax-highlighter/dist/cjs/languages/prism/java";
 import css from "react-syntax-highlighter/dist/cjs/languages/prism/css";
-import style from "react-syntax-highlighter/dist/cjs/styles/prism/vs";
+import style from "react-syntax-highlighter/dist/cjs/styles/prism/vsc-dark-plus";
 
 SyntaxHighlighter.registerLanguage("javascript", javascript);
 SyntaxHighlighter.registerLanguage("jsx", jsx);
@@ -35,7 +35,7 @@ const CopyButton = ({ text }: CopyButtonProps) => {
 
   return (
     <IconButton
-      colorScheme="blackAlpha"
+      colorScheme="whiteAlpha"
       variant="ghost"
       size="sm"
       icon={

@@ -11,6 +11,7 @@ const Home = () => (
       <title>shareflow | Home</title>
     </Head>
     <Flex
+      as="main"
       minHeight="100vh"
       backgroundColor="gray.50"
       flexDirection="column"
